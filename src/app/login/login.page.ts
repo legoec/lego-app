@@ -35,7 +35,12 @@ export class LoginPage implements OnInit {
   }
 
   onSuccess(data) {
-    this.router.navigate(['/home']);
+    const { admin } = data;
+    if (admin) {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/tabs']);
+    }
   }
 
   async onError(error) {
