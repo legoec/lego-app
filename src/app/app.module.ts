@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AngularTokenModule.forRoot({
       apiBase: environment.apiBase,
+      signInPath: 'v0/auth/sign_in'
     }),
   ],
   providers: [
