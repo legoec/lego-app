@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularTokenService } from 'angular-token';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private tokenService: AngularTokenService,
+  ) { }
 
   ngOnInit() {
   }
 
   onSubmit(form) {
-    console.log('form', form.value);
+    if (form && form.value) {
+      this.tokenService.signIn({
+        login: form.value.email,
+        password: form.value.password
+      }).subscribe(
+        (resp) => {
+          const { body: { data } } = resp;
+          this.onSuccess(data);
+        },
+        error =>  this.onError(error)
+      );
+    }
+  }
+
+  onSuccess(data) {
+    console.log('sucess', data);
+  }
+
+  onError(error) {
+    console.log('error', error);
   }
 
 }
