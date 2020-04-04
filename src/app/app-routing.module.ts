@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    path: 'client',
+    loadChildren: () => import('./client/client.module').then(m => m.ClientPageModule)
   },
   {
     path: 'admin',
