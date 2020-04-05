@@ -1,0 +1,12 @@
+<ion-card>
+  <ion-card-content>
+    <div class="category-container">
+      <div class="name">
+        {{category.name}}
+      </div>
+      <ion-button *ngIf="isAdmin" size="small" color="secondary">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
