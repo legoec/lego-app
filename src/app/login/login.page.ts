@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularTokenService } from 'angular-token';
 import { AlertController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import { AppState, selectAuthState } from '../store/app.states';
+import { LogIn } from '../store/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -11,43 +13,32 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   constructor(
-    private tokenService: AngularTokenService,
     private alertController: AlertController,
-    private router: Router
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
+    this.store.select(selectAuthState).subscribe((state) => {
+      if(state.errorMessage) {
+        this.onError(state.errorMessage);
+      }
+    });
   }
 
   onSubmit(form) {
     if (form && form.value) {
-      this.tokenService.signIn({
+      const payload = {
         login: form.value.email,
         password: form.value.password
-      }).subscribe(
-        (resp) => {
-          const { body: { data } } = resp;
-          this.onSuccess(data);
-        },
-        error =>  this.onError(error)
-      );
-    }
-  }
-
-  onSuccess(data) {
-    const { admin } = data;
-    if (admin) {
-      this.router.navigate(['/admin']);
-    } else {
-      this.router.navigate(['/client']);
+      }
+      this.store.dispatch(new LogIn(payload));
     }
   }
 
   async onError(error) {
-    const { error: { errors } } = error;
     const alert = await this.alertController.create({
       header: 'Ups.!',
-      message: errors,
+      message: error,
       buttons: ['Aceptar']
     });
     await alert.present();

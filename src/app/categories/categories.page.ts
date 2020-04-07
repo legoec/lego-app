@@ -1,23 +1,24 @@
-import { Component, AfterContentChecked } from '@angular/core';
-import { AngularTokenService } from 'angular-token';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { AppState, selectAuthState } from '../store/app.states';
 
 @Component({
   selector: 'app-categories-page',
   templateUrl: './categories.page.html',
   styleUrls: ['./categories.page.scss'],
 })
-export class CategoriesPage implements AfterContentChecked {
+export class CategoriesPage implements OnInit {
   isAdmin: boolean;
 
   constructor(
-    private tokenService: AngularTokenService
-  ) {
-    this.tokenService.validateToken();
-  }
+    private store: Store<AppState>
+  ) { }
 
-  ngAfterContentChecked() {
-    const dataUser: any = this.tokenService.currentUserData;
-    this.isAdmin = dataUser ? dataUser.admin : false;
+  ngOnInit() {
+    this.store.select(selectAuthState).subscribe(({user}) => {
+      this.isAdmin = user && user.admin;
+    });
   }
 
 }
