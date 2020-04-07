@@ -1,7 +1,7 @@
 <div>
   <ion-row *ngIf="isAdmin">
     <ion-col>
-        <ion-button size="small" color="secondary" expand="block">
+        <ion-button size="small" color="secondary" expand="block" (click)="onAddCategory()">
           <ion-icon slot="icon-only" name="add"></ion-icon> Categoría
         </ion-button>
     </ion-col>

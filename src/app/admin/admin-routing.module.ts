@@ -9,7 +9,7 @@ const routes: Routes = [
     component: AdminPage,
     children: [
       {
-        path: 'home',
+        path: 'categories',
         loadChildren: () => import('../categories/categories.module').then(m => m.CategoriesPageModule)
       },
       {
@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/admin/home',
+        redirectTo: '/admin/categories',
         pathMatch: 'full'
       }
     ]
