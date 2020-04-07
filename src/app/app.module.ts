@@ -21,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     AngularTokenModule.forRoot({
-      apiBase: `${environment.apiBase}/v0/`
+      apiBase: `${environment.apiBase}/v0`
     }),
   ],
   providers: [
