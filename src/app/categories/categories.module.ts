@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { CategoriesPageRoutingModule } from './categories-routing.module';
 import { CategoriesPage } from './categories.page';
+import { NewCategoryComponent } from '../admin/new-category/new-category.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { CategoriesPage } from './categories.page';
     CategoriesPageRoutingModule,
     SharedModule
   ],
-  declarations: [CategoriesPage]
+  declarations: [CategoriesPage, NewCategoryComponent]
 })
 export class CategoriesPageModule {}
