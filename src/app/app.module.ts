@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { AngularTokenModule } from 'angular-token';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule, Store } from '@ngrx/store';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -11,6 +13,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+
+import { AuthEffects } from './store/effects/auth.effects';
+import { reducers } from './store/app.states';
+import { loadUser } from './providers/load-user';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,11 +29,20 @@ import { HttpClientModule } from '@angular/common/http';
     AngularTokenModule.forRoot({
       apiBase: `${environment.apiBase}/v0`
     }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot(reducers, {}),
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: loadUser,
+      deps: [Injector, Store],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
