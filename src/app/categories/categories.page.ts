@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { AppState, selectAuthState } from '../store/app.states';
+import { AppState, getAuthenticatedUser } from '../store/app.states';
 
 @Component({
   selector: 'app-categories-page',
@@ -16,7 +16,7 @@ export class CategoriesPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(selectAuthState).subscribe(({user}) => {
+    this.store.select(getAuthenticatedUser).subscribe((user) => {
       this.isAdmin = user && user.admin;
     });
   }
