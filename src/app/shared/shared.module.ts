@@ -7,6 +7,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 
 import { CategoriesService } from './services/categories.service';
+import { AuthService } from './services/auth.service';
 
 const modules = [
     CommonModule,
@@ -20,7 +21,8 @@ const components = [
 ];
 
 const providers = [
-    CategoriesService
+    CategoriesService,
+    AuthService
 ];
 
 @NgModule({

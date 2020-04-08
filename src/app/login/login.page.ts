@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { Store } from '@ngrx/store';
-
-import { AppState, getAuthError } from '../store/app.states';
-import { LogIn } from '../store/actions/auth.actions';
-import { filter } from 'rxjs/operators';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +11,11 @@ export class LoginPage implements OnInit {
 
   constructor(
     private alertController: AlertController,
-    private store: Store<AppState>
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.store.select(getAuthError).pipe(
-      filter(errorMessage => !!errorMessage)
-    ).subscribe(errorMessage => this.onError(errorMessage));
+    this.authService.getAuthError().subscribe(errorMessage => this.onError(errorMessage));
   }
 
   onSubmit(form) {
@@ -29,8 +23,8 @@ export class LoginPage implements OnInit {
       const payload = {
         login: form.value.email,
         password: form.value.password
-      }
-      this.store.dispatch(new LogIn(payload));
+      };
+      this.authService.startAuthenticationUser(payload);
     }
   }
 

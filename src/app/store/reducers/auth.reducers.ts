@@ -43,7 +43,13 @@ export function reducer(state = initialState, action: All): State {
         isAuthenticated: true,
         user: action.payload.user,
         errorMessage: null
-      }
+      };
+    }
+    case AuthActionTypes.REMOVE_USER: {
+      return {
+        ...state,
+        ...initialState
+      };
     }
     default: {
       return state;
