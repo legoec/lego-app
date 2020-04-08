@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './guards/admin/admin.guard';
+import { VendorGuard } from './guards/vendor/vendor.guard';
 
 const routes: Routes = [
   {
@@ -15,11 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule),
+    canActivate: [AdminGuard]
   },
   {
     path: 'vendor',
-    loadChildren: () => import('./vendor/vendor.module').then( m => m.VendorPageModule)
+    loadChildren: () => import('./vendor/vendor.module').then( m => m.VendorPageModule),
+    canActivate: [VendorGuard]
   }
 ];
 @NgModule({

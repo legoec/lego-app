@@ -29,7 +29,7 @@ export class AuthEffects {
             return new LogInSuccess({ user: data });
           }),
           catchError(({error: {errors}}) => {
-            return of(new LogInFailure({ errors }))
+            return of(new LogInFailure({ errors }));
           })
         )
       )
@@ -37,8 +37,9 @@ export class AuthEffects {
 
   LogInSuccess: Observable<any> = createEffect(() => this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
-    tap((user: User) => {
-      if (user.admin) {
+    tap(({ payload: { user } }) => {
+      const userData: User = user;
+      if (userData.admin) {
         this.router.navigate(['/admin']);
       } else {
         this.router.navigate(['/client']);
