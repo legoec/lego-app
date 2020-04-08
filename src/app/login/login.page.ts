@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 
-import { AppState, selectAuthState } from '../store/app.states';
+import { AppState, getAuthError } from '../store/app.states';
 import { LogIn } from '../store/actions/auth.actions';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +19,9 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(selectAuthState).subscribe((state) => {
-      if(state.errorMessage) {
-        this.onError(state.errorMessage);
-      }
-    });
+    this.store.select(getAuthError).pipe(
+      filter(errorMessage => !!errorMessage)
+    ).subscribe(errorMessage => this.onError(errorMessage));
   }
 
   onSubmit(form) {
@@ -35,7 +34,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async onError(error) {
+  async onError(error: string) {
     const alert = await this.alertController.create({
       header: 'Ups.!',
       message: error,

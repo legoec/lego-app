@@ -15,6 +15,14 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: All): State {
   switch (action.type) {
+    case AuthActionTypes.LOGIN: {
+      return {
+        ...state,
+        isAuthenticated: undefined,
+        user: null,
+        errorMessage: null
+      };
+    }
     case AuthActionTypes.LOGIN_SUCCESS: {
       return {
         ...state,
