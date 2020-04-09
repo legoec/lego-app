@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin/admin.guard';
 import { VendorGuard } from './guards/vendor/vendor.guard';
+import { OpenGuard } from './guards/Open/open.guard';
+import { ClientGuard } from './guards/Client/client.guard';
 
 const routes: Routes = [
   {
@@ -9,11 +11,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
+    canActivate: [OpenGuard]
   },
   {
     path: 'client',
-    loadChildren: () => import('./client/client.module').then(m => m.ClientPageModule)
+    loadChildren: () => import('./client/client.module').then(m => m.ClientPageModule),
+    canActivate: [ClientGuard]
   },
   {
     path: 'admin',
