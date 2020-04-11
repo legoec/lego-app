@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { AuthService } from '../shared/services/auth.service';
-import { AngularTokenService } from 'angular-token';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +13,7 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
-    private tokenService: AngularTokenService
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -24,13 +22,6 @@ export class ProfilePage implements OnInit {
 
   onLogin = () => this.router.navigate(['/login']);
 
-  onLogout() {
-    this.tokenService.signOut().subscribe(resp => {
-      if (resp.success) {
-        this.authService.resetUserStore();
-        this.router.navigateByUrl('');
-      }
-    });
-  }
+  onLogout = () => this.authService.logOutUser();
 
 }

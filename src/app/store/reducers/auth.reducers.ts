@@ -45,10 +45,16 @@ export function reducer(state = initialState, action: All): State {
         errorMessage: null
       };
     }
-    case AuthActionTypes.REMOVE_USER: {
+    case AuthActionTypes.LOGOUT_SUCCESS: {
       return {
         ...state,
         ...initialState
+      };
+    }
+    case AuthActionTypes.LOGOUT_FAILURE: {
+      return {
+        ...state,
+        errorMessage: action.payload.errors.join('')
       };
     }
     default: {
