@@ -7,7 +7,7 @@ import { tap, map, switchMap, catchError } from 'rxjs/operators';
 import { AngularTokenService } from 'angular-token';
 import {
   AuthActionTypes,
-  LogIn, LogInSuccess, LogInFailure,
+  LogIn, LogInSuccess, LogInFailure, LogOutSuccess, LogOutFailure,
 } from '../actions/auth.actions';
 import { User } from 'src/app/models/user';
 
@@ -29,7 +29,7 @@ export class AuthEffects {
             return new LogInSuccess({ user: data });
           }),
           catchError(({error: {errors}}) => {
-            return of(new LogInFailure({ errors }))
+            return of(new LogInFailure({ errors }));
           })
         )
       )
@@ -37,8 +37,9 @@ export class AuthEffects {
 
   LogInSuccess: Observable<any> = createEffect(() => this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
-    tap((user: User) => {
-      if (user.admin) {
+    tap(({ payload: { user } }) => {
+      const userData: User = user;
+      if (userData.admin) {
         this.router.navigate(['/admin']);
       } else {
         this.router.navigate(['/client']);
@@ -48,6 +49,30 @@ export class AuthEffects {
 
   LogInFailure: Observable<any> = createEffect(() => this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_FAILURE)),
+    { dispatch: false }
+  );
+
+  LogOut: Observable<any> = createEffect(() => this.actions
+    .pipe(ofType(AuthActionTypes.LOGOUT),
+      switchMap(() =>
+        this.authService.signOut().pipe(
+          map(() => {
+            return new LogOutSuccess();
+          }),
+          catchError(({error: {errors}}) => {
+            return of(new LogOutFailure({ errors }));
+          })
+        )
+      )
+    ));
+
+  LogOutSuccess: Observable<any> = createEffect(() => this.actions.pipe(
+    ofType(AuthActionTypes.LOGOUT_SUCCESS),
+    tap(() => this.router.navigate(['']))
+  ), { dispatch: false });
+
+  LogOutFailure: Observable<any> = createEffect(() => this.actions.pipe(
+    ofType(AuthActionTypes.LOGOUT_FAILURE)),
     { dispatch: false }
   );
 }

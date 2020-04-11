@@ -1,11 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="user-info" *ngIf="userInfo">
+    <h1>Bienvenido {{userInfo.name}}</h1>
+    <ion-button
+      color="secondary"
+      expand="block"
+      (click)="onLogout()">
+      Cerrar Sesion
+    </ion-button>
+  </div>
   <ion-button
+    *ngIf="!userInfo"
     color="primary"
     expand="block"
     (click)="onLogin()">
