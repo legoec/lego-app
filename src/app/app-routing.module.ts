@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin/admin.guard';
 import { VendorGuard } from './guards/vendor/vendor.guard';
-import { OpenGuard } from './guards/Open/open.guard';
-import { ClientGuard } from './guards/Client/client.guard';
+import { OpenGuard } from './guards/open/open.guard';
+import { ClientGuard } from './guards/client/client.guard';
 
 const routes: Routes = [
   {
