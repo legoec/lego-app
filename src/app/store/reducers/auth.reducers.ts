@@ -34,7 +34,7 @@ export function reducer(state = initialState, action: All): State {
     case AuthActionTypes.LOGIN_FAILURE: {
       return {
         ...state,
-        errorMessage: action.payload.errors.join('')
+        errorMessage: action.payload.errors.join(', ')
       };
     }
     case AuthActionTypes.SET_USER: {
@@ -54,7 +54,7 @@ export function reducer(state = initialState, action: All): State {
     case AuthActionTypes.LOGOUT_FAILURE: {
       return {
         ...state,
-        errorMessage: action.payload.errors.join('')
+        errorMessage: action.payload.errors.join(', ')
       };
     }
     default: {

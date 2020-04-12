@@ -15,4 +15,11 @@
     (click)="onLogin()">
     Iniciar Sesion
   </ion-button>
+  <ion-button
+    *ngIf="!userInfo"
+    color="light"
+    expand="block"
+    (click)="onSignin()">
+    Registrarse
+  </ion-button>
 </ion-content>

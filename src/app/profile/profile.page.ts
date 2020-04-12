@@ -21,6 +21,7 @@ export class ProfilePage implements OnInit {
   }
 
   onLogin = () => this.router.navigate(['/login']);
+  onSignin = () => this.router.navigate(['/register']);
 
   onLogout = () => this.authService.logOutUser();
 
