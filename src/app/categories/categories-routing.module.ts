@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CategoriesPage } from './categories.page';
-import { NewCategoryComponent } from '../admin/new-category/new-category.component';
+import { NewCategoryComponent } from './new-category/new-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: NewCategoryComponent
+  },
+  {
+    path: 'edit/:id',
+    component: EditCategoryComponent
   }
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { Router } from '@angular/router';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-new-category',
@@ -16,7 +17,7 @@ export class NewCategoryComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit(form) {
-    this.categoriesService.addCategory(form.value).subscribe(() => this.router.navigate(['/admin/categories']));
+  onSubmit(category: Category) {
+    this.categoriesService.addCategory(category).subscribe(() => this.router.navigate(['/admin/categories']));
   }
 }

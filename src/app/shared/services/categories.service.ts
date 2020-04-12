@@ -19,4 +19,12 @@ export class CategoriesService {
     return this.http.post<Category>(this.baseUrl, params);
   }
 
+  getCategory(id: number): Observable<Category> {
+    return this.http.get<Category>(`${this.baseUrl}/${id}`);
+  }
+
+  updateCategory(id: number, category: Category): Observable<Category> {
+    return this.http.put<Category>(`${this.baseUrl}/${id}`, { category });
+  }
+
 }
