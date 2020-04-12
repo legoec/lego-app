@@ -7,16 +7,27 @@ import { SharedModule } from '../shared/shared.module';
 
 import { CategoriesPageRoutingModule } from './categories-routing.module';
 import { CategoriesPage } from './categories.page';
-import { NewCategoryComponent } from '../admin/new-category/new-category.component';
+import { NewCategoryComponent } from './new-category/new-category.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
+
+const modules = [
+  CommonModule,
+  FormsModule,
+  IonicModule,
+  CategoriesPageRoutingModule,
+  SharedModule
+];
+
+const components = [
+  CategoriesPage,
+  NewCategoryComponent,
+  CategoryFormComponent,
+  EditCategoryComponent
+];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    CategoriesPageRoutingModule,
-    SharedModule
-  ],
-  declarations: [CategoriesPage, NewCategoryComponent]
+  imports: modules,
+  declarations: [...components]
 })
 export class CategoriesPageModule {}

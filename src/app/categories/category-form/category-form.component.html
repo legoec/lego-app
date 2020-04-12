@@ -1,0 +1,29 @@
+<form class="category-form" #form="ngForm" (ngSubmit)="submitForm()">
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item>
+      <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input [(ngModel)]="category.name" name="name" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Porcentage<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input [(ngModel)]="category.percentage" name="percentage" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Activo<ion-text color="danger">*</ion-text></ion-label>
+      <ion-toggle [(ngModel)]="category.active" name="active" required></ion-toggle>
+    </ion-item>
+
+    <div class="ion-padding">
+      <ion-button
+        expand="block"
+        type="submit"
+        class="ion-no-margin"
+        [disabled]="form.invalid">
+        Guardar
+      </ion-button>
+    </div>
+  </ion-list>
+</form>
+
