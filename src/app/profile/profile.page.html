@@ -12,7 +12,14 @@
     *ngIf="!userInfo"
     color="primary"
     expand="block"
-    (click)="onLogin()">
+    routerLink="/login">
     Iniciar Sesion
+  </ion-button>
+  <ion-button
+    *ngIf="!userInfo"
+    color="light"
+    expand="block"
+    routerLink="/register">
+    Registrarse
   </ion-button>
 </ion-content>

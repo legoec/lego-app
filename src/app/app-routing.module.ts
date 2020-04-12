@@ -28,6 +28,11 @@ const routes: Routes = [
     path: 'vendor',
     loadChildren: () => import('./vendor/vendor.module').then( m => m.VendorPageModule),
     canActivate: [VendorGuard]
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule),
+    canActivate: [OpenGuard]
   }
 ];
 @NgModule({

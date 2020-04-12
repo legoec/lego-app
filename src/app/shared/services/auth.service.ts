@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, getAuthenticatedUser, getAuthError } from 'src/app/store/app.states';
 import { filter } from 'rxjs/operators';
-import { LogIn, LogOut, } from 'src/app/store/actions/auth.actions';
+import { LogIn, LogOut, SignIn, } from 'src/app/store/actions/auth.actions';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 
@@ -31,5 +31,9 @@ export class AuthService {
 
   logOutUser(): void {
     this.store.dispatch(new LogOut());
+  }
+
+  signIn(payload): void {
+    this.store.dispatch(new SignIn(payload));
   }
 }
