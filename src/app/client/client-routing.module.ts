@@ -9,11 +9,11 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../categories/categories.module').then(m => m.CategoriesPageModule)
+        loadChildren: () => import('../shared-pages/categories/categories.module').then(m => m.CategoriesPageModule)
       },
       {
         path: 'profile',
-        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+        loadChildren: () => import('../shared-pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
         path: '',

@@ -10,15 +10,15 @@ const routes: Routes = [
     children: [
       {
         path: 'categories',
-        loadChildren: () => import('../categories/categories.module').then(m => m.CategoriesPageModule)
+        loadChildren: () => import('../shared-pages/categories/categories.module').then(m => m.CategoriesPageModule)
       },
       {
         path: 'users',
-        loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
+        loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule)
       },
       {
         path: 'profile',
-        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+        loadChildren: () => import('../shared-pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
         path: '',
