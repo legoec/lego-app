@@ -9,6 +9,7 @@ import { CategoryComponent } from './category/category.component';
 
 import { CategoriesService } from './services/categories.service';
 import { AuthService } from './services/auth.service';
+import { ControlMessagesComponent } from './control-messages/control-messages.component';
 
 const modules = [
     CommonModule,
@@ -19,7 +20,8 @@ const modules = [
 
 const components = [
     CategoriesComponent,
-    CategoryComponent
+    CategoryComponent,
+    ControlMessagesComponent
 ];
 
 const providers = [

@@ -20,7 +20,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.authService.getAuthError().subscribe(errorMessage => this.onError(errorMessage));
     this.loginFormGroup = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.email
+      ])],
       password: ['', Validators.required]
     });
   }

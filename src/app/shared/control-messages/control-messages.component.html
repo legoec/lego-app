@@ -2,6 +2,9 @@
   <div *ngIf="control.errors.required">
     Llena este campo por favor.
   </div>
+  <div *ngIf="control.errors.email">
+    Correo Invalido.
+  </div>
   <div *ngIf="control.errors.backendError">
     {{ control.errors.backendError }}
   </div>
