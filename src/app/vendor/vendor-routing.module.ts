@@ -10,19 +10,19 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../categories/categories.module').then(m => m.CategoriesPageModule)
+        loadChildren: () => import('../shared-pages/categories/categories.module').then(m => m.CategoriesPageModule)
       },
       {
         path: 'services',
-        loadChildren: () => import('./services/services.module').then( m => m.ServicesPageModule)
+        loadChildren: () => import('./pages/services/services.module').then( m => m.ServicesPageModule)
       },
       {
         path: 'agreements',
-        loadChildren: () => import('./agreements/agreements.module').then( m => m.AgreementsPageModule)
+        loadChildren: () => import('./pages/agreements/agreements.module').then( m => m.AgreementsPageModule)
       },
       {
         path: 'profile',
-        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+        loadChildren: () => import('../shared-pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
         path: '',

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../shared/services/auth.service';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from '../shared/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
 
   constructor(
     private alertController: AlertController,
@@ -18,13 +18,15 @@ export class LoginPage implements OnInit {
     this.authService.getAuthError().subscribe(errorMessage => this.onError(errorMessage));
   }
 
-  onSubmit(form) {
+  onSignIn(form) {
     if (form && form.value) {
-      const payload = {
+      const payloadSignIn = {
         login: form.value.email,
-        password: form.value.password
+        password: form.value.password,
+        passwordConfirmation: form.value.confirm_password,
+        name: form.value.name
       };
-      this.authService.startAuthenticationUser(payload);
+      this.authService.signIn(payloadSignIn);
     }
   }
 
@@ -36,5 +38,4 @@ export class LoginPage implements OnInit {
     });
     await alert.present();
   }
-
 }
