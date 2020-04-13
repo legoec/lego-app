@@ -5,6 +5,9 @@
   <div *ngIf="control.errors.email">
     Correo Invalido.
   </div>
+  <div *ngIf="control.errors.min || control.errors.max">
+    Numero fura de rango.
+  </div>
   <div *ngIf="control.errors.backendError">
     {{ control.errors.backendError }}
   </div>

@@ -1,26 +1,32 @@
-<form class="category-form" #form="ngForm" (ngSubmit)="submitForm()">
+<form class="category-form" [formGroup]="categoryFormGroup" (ngSubmit)="submitForm()">
   <ion-list lines="full" class="ion-no-margin ion-no-padding">
     <ion-item>
       <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
-      <ion-input [(ngModel)]="category.name" name="name" type="text" required></ion-input>
+      <ion-input formControlName="name" name="name" type="text"></ion-input>
     </ion-item>
+    <app-control-messages [control]="categoryFormGroup.get('name')">
+    </app-control-messages>
 
     <ion-item>
       <ion-label position="stacked">Porcentage<ion-text color="danger">*</ion-text></ion-label>
-      <ion-input [(ngModel)]="category.percentage" name="percentage" type="number" required></ion-input>
+      <ion-input formControlName="percentage" name="percentage" type="number"></ion-input>
     </ion-item>
+    <app-control-messages [control]="categoryFormGroup.get('percentage')">
+    </app-control-messages>
 
     <ion-item>
       <ion-label position="stacked">Activo<ion-text color="danger">*</ion-text></ion-label>
-      <ion-toggle [(ngModel)]="category.active" name="active" required></ion-toggle>
+      <ion-toggle formControlName="active" name="active"></ion-toggle>
     </ion-item>
+    <app-control-messages [control]="categoryFormGroup.get('active')">
+    </app-control-messages>
 
     <div class="ion-padding">
       <ion-button
         expand="block"
         type="submit"
         class="ion-no-margin"
-        [disabled]="form.invalid">
+        [disabled]="categoryFormGroup.invalid">
         Guardar
       </ion-button>
     </div>

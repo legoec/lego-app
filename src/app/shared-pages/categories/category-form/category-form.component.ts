@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Category } from 'src/app/models/category';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-category-form',
@@ -10,12 +11,30 @@ export class CategoryFormComponent implements OnInit {
 
   @Input() category: Category = {};
   @Output() onSubmit: EventEmitter<Category> = new EventEmitter<Category>();
+  categoryFormGroup: FormGroup;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const activeCategory = this.category.hasOwnProperty('active') ? this.category.active : false;
+    this.categoryFormGroup = this.formBuilder.group({
+      name: [this.category.name, Validators.required],
+      percentage: [this.category.percentage, Validators.compose([
+        Validators.required,
+        Validators.min(0),
+        Validators.max(100),
+      ])],
+      active: [activeCategory, Validators.required],
+    });
+  }
 
   submitForm() {
+    this.category = {
+      ...this.category,
+      ...this.categoryFormGroup.value
+    };
     this.onSubmit.emit(this.category);
   }
 }
