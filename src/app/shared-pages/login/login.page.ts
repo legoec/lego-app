@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../../shared/services/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,24 +9,31 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  loginFormGroup: FormGroup;
 
   constructor(
     private alertController: AlertController,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
     this.authService.getAuthError().subscribe(errorMessage => this.onError(errorMessage));
+    this.loginFormGroup = this.formBuilder.group({
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.email
+      ])],
+      password: ['', Validators.required]
+    });
   }
 
-  onSubmit(form) {
-    if (form && form.value) {
-      const payload = {
-        login: form.value.email,
-        password: form.value.password
-      };
-      this.authService.startAuthenticationUser(payload);
-    }
+  onSubmit() {
+    const payload = {
+      login: this.loginFormGroup.value.email,
+      password: this.loginFormGroup.value.password
+    };
+    this.authService.startAuthenticationUser(payload);
   }
 
   async onError(error: string) {

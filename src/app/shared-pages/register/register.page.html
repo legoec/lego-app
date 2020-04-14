@@ -1,32 +1,40 @@
 <ion-content>
-  <form class="register-form" #form="ngForm" (ngSubmit)="onSignIn(form)">
+  <form class="register-form" [formGroup]="registerFormGroup"(ngSubmit)="onSignIn()">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
         <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input ngModel name="name" type="text" required></ion-input>
+        <ion-input formControlName="name" name="name" type="text"></ion-input>
       </ion-item>
+      <app-control-messages [control]="registerFormGroup.get('name')">
+      </app-control-messages>
 
       <ion-item>
         <ion-label position="stacked">Email<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input ngModel name="email" type="email" required></ion-input>
+        <ion-input formControlName="email" name="email" type="email"></ion-input>
       </ion-item>
+      <app-control-messages [control]="registerFormGroup.get('email')">
+      </app-control-messages>
 
       <ion-item>
         <ion-label position="stacked">Password<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input ngModel name="password" type="password" required></ion-input>
+        <ion-input formControlName="password" name="password" type="password"></ion-input>
       </ion-item>
+      <app-control-messages [control]="registerFormGroup.get('password')">
+      </app-control-messages>
 
       <ion-item>
         <ion-label position="stacked">Confirmar Password<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input ngModel name="confirm_password" type="password" required></ion-input>
+        <ion-input formControlName="confirm_password" name="confirm_password" type="password"></ion-input>
       </ion-item>
+      <app-control-messages [control]="registerFormGroup.get('confirm_password')">
+      </app-control-messages>
 
       <div class="ion-padding">
         <ion-button 
           expand="block"
           type="submit"
           class="ion-no-margin"
-          [disabled]="form.invalid">
+          [disabled]="registerFormGroup.invalid">
           Registrarse
         </ion-button>
       </div>
