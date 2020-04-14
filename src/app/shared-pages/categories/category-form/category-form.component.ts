@@ -18,7 +18,6 @@ export class CategoryFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const activeCategory = this.category.hasOwnProperty('active') ? this.category.active : false;
     this.categoryFormGroup = this.formBuilder.group({
       name: [this.category.name, Validators.required],
       percentage: [this.category.percentage, Validators.compose([
@@ -26,7 +25,7 @@ export class CategoryFormComponent implements OnInit {
         Validators.min(0),
         Validators.max(100),
       ])],
-      active: [activeCategory, Validators.required],
+      active: [!!this.category.active, Validators.required],
     });
   }
 
