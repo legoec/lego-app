@@ -21,5 +21,10 @@ export const getAuthenticatedUser = createSelector(
 
 export const getAuthError = createSelector(
   selectAuthState,
-  state => state.errorMessage,
+  state => state.errorMessageLogin,
+);
+
+export const getSignUpError = createSelector(
+  selectAuthState,
+  state => state.errorMessageSignUp,
 );

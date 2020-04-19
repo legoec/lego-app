@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
-import { AlertController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -12,23 +11,20 @@ export class RegisterPage implements OnInit {
   registerFormGroup: FormGroup;
 
   constructor(
-    private alertController: AlertController,
     private authService: AuthService,
     private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
-    this.authService.getAuthError().subscribe(errorMessage => this.onError(errorMessage));
+    this.authService.getSignUpError().subscribe(errors => this.onError(errors));
     this.registerFormGroup = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([
         Validators.required,
         Validators.email
       ])],
-      password: ['', Validators.required],
-      confirm_password: ['', Validators.compose([
-        Validators.required
-      ])],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirm_password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -42,12 +38,10 @@ export class RegisterPage implements OnInit {
     this.authService.signIn(payloadSignIn);
   }
 
-  async onError(error: string) {
-    const alert = await this.alertController.create({
-      header: 'Ups.!',
-      message: error,
-      buttons: ['Aceptar']
+  async onError(errors: {}) {
+    Object.keys(errors).forEach(key => {
+      const formField = this.registerFormGroup.controls[key];
+      formField.setErrors({'backendError': errors[key].join('. ')});
     });
-    await alert.present();
   }
 }

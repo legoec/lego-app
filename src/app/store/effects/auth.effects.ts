@@ -7,7 +7,13 @@ import { tap, map, switchMap, catchError } from 'rxjs/operators';
 import { AngularTokenService } from 'angular-token';
 import {
   AuthActionTypes,
-  LogIn, LogInSuccess, LogInFailure, LogOutSuccess, LogOutFailure, SignIn
+  LogIn,
+  LogInSuccess,
+  LogInFailure,
+  LogOutSuccess,
+  LogOutFailure,
+  SignIn,
+  SignInFailure
 } from '../actions/auth.actions';
 import { User } from 'src/app/models/user';
 
@@ -84,11 +90,16 @@ export class AuthEffects {
           map(({data}) => {
             return new LogInSuccess({ user: data });
           }),
-          catchError(({error: {errors: {full_messages}}}) => {
-            const payloadError = { errors: full_messages};
-            return of(new LogInFailure(payloadError));
+          catchError(({error: {errors }}) => {
+            const  {full_messages, ...payloadError} = errors;
+            return of(new SignInFailure({errors: payloadError}));
           })
         )
       )
     ));
+
+  SignInFailure: Observable<any> = createEffect(() => this.actions.pipe(
+    ofType(AuthActionTypes.SIGNIN_FAILURE)),
+    { dispatch: false }
+  );
 }
