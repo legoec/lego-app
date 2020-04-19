@@ -6,7 +6,13 @@
     Correo Invalido.
   </div>
   <div *ngIf="control.errors.min || control.errors.max">
-    Numero fura de rango.
+    Numero fuera de rango.
+  </div>
+  <div *ngIf="control.errors.minlength">
+    Logitud mínima: {{control.errors.minlength.requiredLength}}
+  </div>
+  <div *ngIf="control.errors.maxlength">
+    Logitud máxima: {{control.errors.maxlength.requiredLength}}
   </div>
   <div *ngIf="control.errors.backendError">
     {{ control.errors.backendError }}

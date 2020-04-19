@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, getAuthenticatedUser, getAuthError } from 'src/app/store/app.states';
+import { AppState, getAuthenticatedUser, getAuthError, getSignUpError } from 'src/app/store/app.states';
 import { filter } from 'rxjs/operators';
 import { LogIn, LogOut, SignIn, } from 'src/app/store/actions/auth.actions';
 import { Observable } from 'rxjs';
@@ -35,5 +35,11 @@ export class AuthService {
 
   signIn(payload): void {
     this.store.dispatch(new SignIn(payload));
+  }
+
+  getSignUpError(): Observable<{}> {
+    return this.store.select(getSignUpError).pipe(
+      filter(errorMessage => !!errorMessage)
+    );
   }
 }

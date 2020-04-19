@@ -4,13 +4,15 @@ import { AuthActionTypes, All } from '../actions/auth.actions';
 export interface State {
   isAuthenticated: boolean;
   user: User | null;
-  errorMessage: string | null;
+  errorMessageLogin: string | null;
+  errorMessageSignUp: {} | null;
 }
 
 export const initialState: State = {
   isAuthenticated: false,
   user: null,
-  errorMessage: null
+  errorMessageLogin: null,
+  errorMessageSignUp: null
 };
 
 export function reducer(state = initialState, action: All): State {
@@ -20,7 +22,7 @@ export function reducer(state = initialState, action: All): State {
         ...state,
         isAuthenticated: undefined,
         user: null,
-        errorMessage: null
+        errorMessageLogin: null
       };
     }
     case AuthActionTypes.LOGIN_SUCCESS: {
@@ -28,13 +30,13 @@ export function reducer(state = initialState, action: All): State {
         ...state,
         isAuthenticated: true,
         user: action.payload.user,
-        errorMessage: null
+        errorMessageLogin: null
       };
     }
     case AuthActionTypes.LOGIN_FAILURE: {
       return {
         ...state,
-        errorMessage: action.payload.errors.join(', ')
+        errorMessageLogin: action.payload.errors.join(', ')
       };
     }
     case AuthActionTypes.SET_USER: {
@@ -42,7 +44,7 @@ export function reducer(state = initialState, action: All): State {
         ...state,
         isAuthenticated: true,
         user: action.payload.user,
-        errorMessage: null
+        errorMessageLogin: null
       };
     }
     case AuthActionTypes.LOGOUT_SUCCESS: {
@@ -51,10 +53,10 @@ export function reducer(state = initialState, action: All): State {
         ...initialState
       };
     }
-    case AuthActionTypes.LOGOUT_FAILURE: {
+    case AuthActionTypes.SIGNIN_FAILURE: {
       return {
         ...state,
-        errorMessage: action.payload.errors.join(', ')
+        errorMessageSignUp: action.payload.errors
       };
     }
     default: {
