@@ -13,6 +13,10 @@ const routes: Routes = [
         loadChildren: () => import('../shared-pages/categories/categories.module').then(m => m.CategoriesPageModule)
       },
       {
+        path: 'vendors',
+        loadChildren: () => import('../shared-pages/vendors/vendors.module').then(m => m.VendorsPageModule)
+      },
+      {
         path: 'users',
         loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule)
       },

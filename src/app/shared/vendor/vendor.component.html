@@ -1,0 +1,12 @@
+<ion-item>
+  <ion-avatar slot="start">
+    <img [src]="vendor?.logo">
+  </ion-avatar>
+  <ion-label>
+    <h2>{{vendor?.economic_activity}}</h2>
+    <h3>{{vendor?.legal_representative}}</h3>
+    <p>{{vendor?.slogan}}</p>
+  </ion-label>
+  <ion-icon *ngIf="isAdmin" name="ellipsis-vertical-outline" slot="end">
+  </ion-icon>
+</ion-item>

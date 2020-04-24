@@ -1,0 +1,6 @@
+<ion-list>
+  <app-vendor *ngFor="let vendor of vendors; let i = index"
+    [vendor]="vendor"
+    [isAdmin]="isAdmin">
+  </app-vendor>
+</ion-list>
