@@ -10,8 +10,8 @@ export interface Vendor {
 }
 
 export enum VendorStatus {
-  PENDING = 'Pendiente',
-  APPROVED = 'Aprobado',
-  DISABLED = 'Deshabilitado',
-  DECLINED = 'Declinado'
+  PENDING = 'pending',
+  APPROVED = 'approved',
+  DISABLED = 'disabled',
+  DECLINED = 'declined'
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Vendor, VendorStatus } from 'src/app/models/vendor';
+import { VendorsService } from '../services/vendors.service';
 
 @Component({
   selector: 'app-vendors',
@@ -10,10 +11,12 @@ export class VendorsComponent implements OnInit {
   @Input() isAdmin: boolean = false;
   vendors: Vendor[] = [];
 
-  constructor() { }
+  constructor(
+    private vendorsService: VendorsService
+  ) { }
 
   ngOnInit() {
-    this.vendors = [
+    const mockVendors = [
       {
         economic_activity: 'Software Developer',
         legal_representative: 'Sultano de Loja',
@@ -29,6 +32,12 @@ export class VendorsComponent implements OnInit {
         status: VendorStatus.APPROVED
       }
     ];
+    this.vendorsService.getVendors().subscribe( response => {
+      this.vendors = [
+        ...response,
+        ...mockVendors
+      ];
+    });
   }
 
 }

@@ -32,7 +32,14 @@ export class VendorComponent implements OnInit {
   private buttons = {
     [VendorStatus.PENDING]: [ this.approvedOpt, this.disabledOpt, this.declinedOpt ],
     [VendorStatus.APPROVED]: [ this.disabledOpt ],
-    [VendorStatus.DISABLED]: [ this.approvedOpt ]
+    [VendorStatus.DISABLED]: [ this.approvedOpt ],
+    [VendorStatus.DECLINED]: [ this.approvedOpt ],
+  };
+  private translationStatus = {
+    [VendorStatus.PENDING]: 'Pendiente',
+    [VendorStatus.APPROVED]: 'Aprobado',
+    [VendorStatus.DISABLED]: 'Deshabilitado',
+    [VendorStatus.DECLINED]: 'Declinado',
   };
 
   constructor(
