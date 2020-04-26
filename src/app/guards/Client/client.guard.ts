@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { map } from 'rxjs/operators';
+import { VendorService } from 'src/app/shared/services/vendor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { map } from 'rxjs/operators';
 export class ClientGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private vendorService: VendorService
   ) { }
 
   canActivate(
@@ -22,9 +24,7 @@ export class ClientGuard implements CanActivate {
             if (user.admin) {
               return this.router.parseUrl('admin');
             }
-            if (user.isVendor) {
-              return this.router.parseUrl('vendor');
-            }
+            this.vendorService.clearVendorRequest();
           }
           return true;
         })

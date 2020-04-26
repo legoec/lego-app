@@ -13,8 +13,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AuthEffects } from './store/effects/auth.effects';
+import { VendorEffects } from './store/effects/vendor.effects';
 import { reducers } from './store/app.states';
 import { loadUser } from './providers/load-user';
 
@@ -29,9 +31,12 @@ import { loadUser } from './providers/load-user';
     AngularTokenModule.forRoot({
       apiBase: `${environment.apiBase}/v0`
     }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, VendorEffects]),
     StoreModule.forRoot(reducers, {}),
-
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [
     StatusBar,

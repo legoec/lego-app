@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../shared-pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
+        path: 'register-vendor',
+        loadChildren: () => import('./register-vendor/register-vendor.module').then(m => m.RegisterVendorModule)
+      },
+      {
         path: '',
         redirectTo: '/client/home',
         pathMatch: 'full'
