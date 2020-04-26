@@ -1,3 +1,5 @@
+import { EVendorRequestStatus } from './vendor-request';
+
 export interface Vendor {
   id?: number;
   ruc?: string;
@@ -7,12 +9,5 @@ export interface Vendor {
   image?: string;
   logo?: string;
   slogan?: string;
-  status?: VendorStatus;
-}
-
-export enum VendorStatus {
-  PENDING = 'pending',
-  APPROVED = 'approved',
-  DISABLED = 'disabled',
-  DECLINED = 'declined'
+  status?: EVendorRequestStatus;
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Vendor, VendorStatus } from 'src/app/models/vendor';
+import { Vendor } from 'src/app/models/vendor';
 import { ActionSheetController } from '@ionic/angular';
+import { EVendorRequestStatus, VendorRequest } from 'src/app/models/vendor-request';
+import { VendorRequestService } from '../services/vendor_request';
 
 @Component({
   selector: 'app-vendor',
@@ -15,35 +17,36 @@ export class VendorComponent implements OnInit {
     text: 'Habilitar',
     role: 'destructive',
     icon: 'checkmark-outline',
-    handler: () => this.onDispatchAction(VendorStatus.APPROVED)
+    handler: () => this.onDispatchAction(EVendorRequestStatus.APPROVED)
   };
   private disabledOpt = {
     text: 'Deshabilitar',
     role: 'destructive',
     icon: 'close-outline',
-    handler: () => this.onDispatchAction(VendorStatus.DISABLED)
+    handler: () => this.onDispatchAction(EVendorRequestStatus.DISABLED)
   };
   private declinedOpt = {
     text: 'Declinar',
     role: 'destructive',
     icon: 'trash-bin-outline',
-    handler: () => this.onDispatchAction(VendorStatus.DECLINED)
+    handler: () => this.onDispatchAction(EVendorRequestStatus.DECLINED)
   };
   private buttons = {
-    [VendorStatus.PENDING]: [ this.approvedOpt, this.disabledOpt, this.declinedOpt ],
-    [VendorStatus.APPROVED]: [ this.disabledOpt ],
-    [VendorStatus.DISABLED]: [ this.approvedOpt ],
-    [VendorStatus.DECLINED]: [ this.approvedOpt ],
+    [EVendorRequestStatus.PENDING]: [ this.approvedOpt, this.disabledOpt, this.declinedOpt ],
+    [EVendorRequestStatus.APPROVED]: [ this.disabledOpt ],
+    [EVendorRequestStatus.DISABLED]: [ this.approvedOpt ],
+    [EVendorRequestStatus.DECLINED]: [ this.approvedOpt ],
   };
   private translationStatus = {
-    [VendorStatus.PENDING]: 'Pendiente',
-    [VendorStatus.APPROVED]: 'Aprobado',
-    [VendorStatus.DISABLED]: 'Deshabilitado',
-    [VendorStatus.DECLINED]: 'Declinado',
+    [EVendorRequestStatus.PENDING]: 'Pendiente',
+    [EVendorRequestStatus.APPROVED]: 'Aprobado',
+    [EVendorRequestStatus.DISABLED]: 'Deshabilitado',
+    [EVendorRequestStatus.DECLINED]: 'Declinado',
   };
 
   constructor(
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    private vendorRequestService: VendorRequestService
   ) { }
 
   ngOnInit() {}
@@ -59,10 +62,19 @@ export class VendorComponent implements OnInit {
     await actionSheet.present();
   }
 
-  onDispatchAction(action: string) {
-    if (action !== VendorStatus.APPROVED) {
-      // Open modal to sen feedback
+  onDispatchAction(status: EVendorRequestStatus): void {
+    if (status !== EVendorRequestStatus.APPROVED) {
+      // Open modal to send feedback
     }
+    const vendorRequestParams = {
+      status,
+      feedback: '',
+      vendor_id: this.vendor.id
+    };
+    this.vendorRequestService.sendRequest(vendorRequestParams)
+      .subscribe((vendorRequest) => {
+        this.vendor.status = vendorRequest.status;
+      });
   }
 
 }

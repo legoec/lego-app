@@ -13,6 +13,7 @@ import { ControlMessagesComponent } from './control-messages/control-messages.co
 import { VendorsComponent } from './vendors/vendors.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { VendorsService } from './services/vendors.service';
+import { VendorRequestService } from './services/vendor_request';
 
 const modules = [
     CommonModule,
@@ -32,6 +33,7 @@ const components = [
 const providers = [
     CategoriesService,
     VendorsService,
+    VendorRequestService,
     AuthService
 ];
 
