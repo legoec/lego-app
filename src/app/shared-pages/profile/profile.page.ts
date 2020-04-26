@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { AuthService } from '../../shared/services/auth.service';
+import { Observable } from 'rxjs';
+import { VendorRequest } from 'src/app/models/vendor-request';
+import { VendorService } from 'src/app/shared/services/vendor.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,14 +11,15 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  userInfo: User;
+  user$: Observable<User> = this.authService.getAuthenticadUser();
+  vendor$: Observable<VendorRequest> = this.vendorService.getVendorRequest();
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private vendorService: VendorService
   ) { }
 
   ngOnInit() {
-    this.authService.getAuthenticadUser().subscribe((user) => this.userInfo = user);
   }
 
   onLogout = () => this.authService.logOutUser();

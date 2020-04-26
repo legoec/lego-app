@@ -25,6 +25,7 @@
     "@ionic/angular": "^5.0.0",
     "@ngrx/effects": "^9.0.0",
     "@ngrx/store": "^9.0.0",
+    "@ngrx/store-devtools": "^9.0.0",
     "angular-token": "^7.0.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",

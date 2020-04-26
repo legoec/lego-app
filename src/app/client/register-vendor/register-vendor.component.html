@@ -1,0 +1,89 @@
+<ion-content>
+  <div class="form-container" *ngIf="renderForm">
+    <form class="register-form" [formGroup]="registerFormGroup"(ngSubmit)="onSubmit()">
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item>
+          <ion-label position="stacked">RUC<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input formControlName="ruc" name="ruc" type="text"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('ruc')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Actividad económica<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input formControlName="economic_activity" name="economic_activity" type="text"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('economic_activity')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Tipo de contribuyente<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input formControlName="contributor_type" name="contributor_type" type="text"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('contributor_type')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Representante legal<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input formControlName="legal_representative" name="legal_representative" type="text"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('legal_representative')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Nombre del negocio<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input formControlName="business_name" name="business_name" type="text"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('business_name')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Slogan</ion-label>
+          <ion-input formControlName="slogan" name="slogan" type="text"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('slogan')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Teléfono o celular<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input formControlName="mobile" name="mobile" type="text"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('mobile')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Imagen<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input formControlName="image" name="image" type="file"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('image')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Logo<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input formControlName="logo" name="logo" type="file"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('logo')"></app-control-messages>
+
+        <ion-item>
+          <ion-label position="stacked">Categoría<ion-text color="danger">*</ion-text></ion-label>
+          <ion-select formControlName="category_id">
+            <ion-select-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <app-control-messages [control]="registerFormGroup.get('category_id')"></app-control-messages>
+
+
+        <div class="ion-padding">
+          <ion-button
+            expand="block"
+            type="submit"
+            class="ion-no-margin"
+            [disabled]="registerFormGroup.invalid">
+            Registrarse
+          </ion-button>
+        </div>
+      </ion-list>
+    </form>
+  </div>
+  <div class="request-form" *ngIf="!renderForm && !!vendorRequest">
+    <div *ngIf="vendorRequest.status === 'pending'">
+      Tu solicitud está siendo procesada
+    </div>
+    <div *ngIf="vendorRequest.status !== 'pending'">
+      El estado de tu solicitud es {{vendorRequest.status}}.
+      <span *ngIf="vendorRequest.feedback">La razón es {{vendorRequest.status}}</span>
+    </div>
+  </div>
+</ion-content>
