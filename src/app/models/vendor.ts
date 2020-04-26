@@ -1,4 +1,5 @@
 export interface Vendor {
+  id?: number;
   ruc?: string;
   economic_activity?: string;
   legal_representative?: string;
