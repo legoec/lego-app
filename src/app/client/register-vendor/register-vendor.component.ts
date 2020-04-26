@@ -68,7 +68,7 @@ export class RegisterVendorComponent {
     this.vendorService.createVendor(this.registerFormGroup.value).subscribe(async () => {
       this.router.navigate(['']);
       const toast = await this.toastController.create({
-        message: 'Your settings have been saved.',
+        message: 'Tu solicitud está siendo procesada!',
         duration: 2000
       });
       toast.present();
