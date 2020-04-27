@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-vendors-page',
@@ -7,16 +9,17 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./vendors.page.scss'],
 })
 export class VendorsPage implements OnInit {
-  isAdmin: boolean;
+  isAdmin$: Observable<boolean>;
 
   constructor(
     private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.authService.getAuthenticadUser().subscribe((user) => {
-      this.isAdmin = user && user.admin;
-    });
+    this.isAdmin$ = this.authService.getAuthenticadUser()
+    .pipe(
+      map(user => user && user.admin)
+    );
   }
 
 }

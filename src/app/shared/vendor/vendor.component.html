@@ -7,12 +7,12 @@
     <h3>{{vendor?.legal_representative}}</h3>
     <p>{{vendor?.slogan}}</p>
   </ion-label>
-  <span *ngIf="isAdmin"
+  <span *ngIf="vendorRequest"
     class="status"
     slot="end"
-    [ngClass]="vendor?.status">
-    {{translationStatus[vendor?.status]}}
+    [ngClass]="vendorRequest?.status">
+    {{translationStatus[vendorRequest?.status]}}
   </span>
-  <ion-icon *ngIf="isAdmin" name="ellipsis-vertical-outline" slot="end" (click)="onShowMenuActions()">
+  <ion-icon *ngIf="vendorRequest" name="ellipsis-vertical-outline" slot="end" (click)="onShowMenuActions()">
   </ion-icon>
 </ion-item>

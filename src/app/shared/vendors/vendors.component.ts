@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Vendor } from 'src/app/models/vendor';
-import { VendorsService } from '../services/vendors.service';
+import { VendorRequestService } from '../services/vendor_request';
+import { Observable } from 'rxjs';
+import { VendorRequest } from 'src/app/models/vendor-request';
 
 @Component({
   selector: 'app-vendors',
@@ -9,16 +10,14 @@ import { VendorsService } from '../services/vendors.service';
 })
 export class VendorsComponent implements OnInit {
   @Input() isAdmin: boolean = false;
-  vendors: Vendor[] = [];
+  vendorRequests$: Observable<VendorRequest[]>;
 
   constructor(
-    private vendorsService: VendorsService
+    private vendorRequestService: VendorRequestService
   ) { }
 
   ngOnInit() {
-    this.vendorsService.getVendors().subscribe( response => {
-      this.vendors = response;
-    });
+    this.vendorRequests$ = this.vendorRequestService.getVendorRequests();
   }
 
 }

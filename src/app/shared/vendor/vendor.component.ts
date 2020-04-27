@@ -1,17 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Vendor } from 'src/app/models/vendor';
 import { ActionSheetController } from '@ionic/angular';
 import { EVendorRequestStatus, VendorRequest } from 'src/app/models/vendor-request';
 import { VendorRequestService } from '../services/vendor_request';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vendor',
   templateUrl: './vendor.component.html',
   styleUrls: ['./vendor.component.scss'],
 })
-export class VendorComponent implements OnInit {
-  @Input() isAdmin: boolean = false;
+export class VendorComponent implements OnInit, OnDestroy {
   @Input() vendor: Vendor;
+  @Input() vendorRequest: VendorRequest;
 
   private approvedOpt = {
     text: 'Habilitar',
@@ -43,6 +44,7 @@ export class VendorComponent implements OnInit {
     [EVendorRequestStatus.DISABLED]: 'Deshabilitado',
     [EVendorRequestStatus.DECLINED]: 'Declinado',
   };
+  private vendorRequestSub: Subscription;
 
   constructor(
     private actionSheetController: ActionSheetController,
@@ -54,7 +56,7 @@ export class VendorComponent implements OnInit {
   async onShowMenuActions() {
     const actionSheet = await this.actionSheetController.create({
       buttons: [
-        ...this.buttons[this.vendor.status],
+        ...this.buttons[this.vendorRequest.status],
         { text: 'Cancelar', role: 'cancel', icon: 'log-out-outline' }
       ]
     });
@@ -71,10 +73,14 @@ export class VendorComponent implements OnInit {
       feedback: '',
       vendor_id: this.vendor.id
     };
-    this.vendorRequestService.sendRequest(vendorRequestParams)
+    this.vendorRequestSub = this.vendorRequestService.sendRequest(vendorRequestParams)
       .subscribe((vendorRequest) => {
-        this.vendor.status = vendorRequest.status;
+        this.vendorRequest.status = vendorRequest.status;
       });
+  }
+
+  ngOnDestroy() {
+    this.vendorRequestSub.unsubscribe();
   }
 
 }

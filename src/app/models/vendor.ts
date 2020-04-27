@@ -1,5 +1,3 @@
-import { EVendorRequestStatus } from './vendor-request';
-
 export interface Vendor {
   id?: number;
   ruc?: string;
@@ -9,5 +7,4 @@ export interface Vendor {
   image?: string;
   logo?: string;
   slogan?: string;
-  status?: EVendorRequestStatus;
 }
