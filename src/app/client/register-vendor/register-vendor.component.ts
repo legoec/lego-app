@@ -7,6 +7,7 @@ import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { ToastController } from '@ionic/angular';
+import { Vendor } from 'src/app/models/vendor';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class RegisterVendorComponent {
   renderForm: boolean = false;
   vendorRequest: VendorRequest = null;
   registerFormGroup: FormGroup;
-  categories$: Observable<Category[]>= this.categoriesService.getCategories();
+  categories$: Observable<Category[]> = this.categoriesService.getCategories();
 
   constructor(
     private vendorService: VendorService,
@@ -32,14 +33,14 @@ export class RegisterVendorComponent {
   ionViewWillEnter() {
       this.vendorService.setVendor();
       this.vendorService.getVendorRequest().subscribe(vendorRequest => {
-        if(vendorRequest) {
+        if (vendorRequest) {
           // if is new. render form
-          if(Object.keys(vendorRequest).length === 0) {
+          if (Object.keys(vendorRequest).length === 0) {
             this.renderForm = true;
             this.createForm();
           } else {
             // it has status approved. redirect
-            if(vendorRequest.status === EVendorRequestStatus.APPROVED) {
+            if (vendorRequest.status === EVendorRequestStatus.APPROVED) {
               this.router.navigate(['/vendor/home']);
             }
           }
@@ -65,7 +66,8 @@ export class RegisterVendorComponent {
   }
 
   onSubmit() {
-    this.vendorService.createVendor(this.registerFormGroup.value).subscribe(async () => {
+    const formDataVendor = this.createFormData(this.registerFormGroup.value);
+    this.vendorService.createVendor(formDataVendor).subscribe(async () => {
       this.router.navigate(['']);
       const toast = await this.toastController.create({
         message: 'Tu solicitud está siendo procesada!',
@@ -78,6 +80,23 @@ export class RegisterVendorComponent {
         formField.setErrors({'backendError': error.errors[key].join('. ')});
       });
     });
+  }
+
+  onFileChange(event, key): void {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => this.registerFormGroup.controls[key].setValue(file);
+    }
+  }
+
+  createFormData(vendor: Vendor): FormData {
+    const formDataVendor = new FormData();
+    Object.keys(vendor).forEach(key => {
+      formDataVendor.append(key, vendor[key]);
+    });
+    return formDataVendor;
   }
 
 }
