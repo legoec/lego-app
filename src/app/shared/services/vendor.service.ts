@@ -43,7 +43,7 @@ export class VendorService {
     this.store.dispatch(new ClearVendor());
   }
 
-  createVendor(vendor: Vendor): Observable<VendorRequest> {
-    return this.http.post<VendorRequest>(this.baseUrl, {vendor});
+  createVendor(formDataVendor: FormData): Observable<VendorRequest> {
+    return this.http.post<VendorRequest>(this.baseUrl, formDataVendor);
   }
 }

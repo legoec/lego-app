@@ -46,13 +46,18 @@
 
         <ion-item>
           <ion-label position="stacked">Imagen<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input formControlName="image" name="image" type="file"></ion-input>
+          <ion-input formControlName="image" name="image" type="file"
+            accept=".png,.gif,.jpeg"
+            (change)="onFileChange($event, 'image')">
+          </ion-input>
         </ion-item>
         <app-control-messages [control]="registerFormGroup.get('image')"></app-control-messages>
 
         <ion-item>
           <ion-label position="stacked">Logo<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input formControlName="logo" name="logo" type="file"></ion-input>
+          <ion-input formControlName="logo" name="logo" type="file"
+            accept=".png,.gif,.jpeg"
+            (change)="onFileChange($event, 'logo')"></ion-input>
         </ion-item>
         <app-control-messages [control]="registerFormGroup.get('logo')"></app-control-messages>
 
