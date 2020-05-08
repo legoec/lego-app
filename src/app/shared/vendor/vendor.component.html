@@ -11,7 +11,7 @@
     class="status"
     slot="end"
     [ngClass]="vendorRequest?.status">
-    {{translationStatus[vendorRequest?.status]}}
+    {{translationStatus[vendorRequest?.status]}} {{ vendorRequest?.feedback }}
   </span>
   <ion-icon *ngIf="vendorRequest" name="ellipsis-vertical-outline" slot="end" (click)="onShowMenuActions()">
   </ion-icon>
