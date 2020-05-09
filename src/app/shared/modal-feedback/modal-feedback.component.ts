@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal-feedback.component.scss'],
 })
 export class ModalFeedbackComponent {
-  feedback: String
+  feedback: string;
 
   constructor(private modalInstance: ModalController){
   }
