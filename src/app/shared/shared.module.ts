@@ -13,6 +13,7 @@ import { ControlMessagesComponent } from './control-messages/control-messages.co
 import { VendorsComponent } from './vendors/vendors.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { VendorRequestService } from './services/vendor_request';
+import { ModalFeedbackComponent } from './modal-feedback/modal-feedback.component';
 
 const modules = [
     CommonModule,
@@ -26,7 +27,8 @@ const components = [
     CategoryComponent,
     ControlMessagesComponent,
     VendorsComponent,
-    VendorComponent
+    VendorComponent,
+    ModalFeedbackComponent
 ];
 
 const providers = [
@@ -42,6 +44,9 @@ const providers = [
      ...modules,
      ...components
  ],
- providers
+ providers,
+ entryComponents: [
+     ModalFeedbackComponent
+    ]
 })
 export class SharedModule { }

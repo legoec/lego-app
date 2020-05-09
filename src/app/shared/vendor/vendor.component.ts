@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Vendor } from 'src/app/models/vendor';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ModalController } from '@ionic/angular';
 import { EVendorRequestStatus, VendorRequest } from 'src/app/models/vendor-request';
 import { VendorRequestService } from '../services/vendor_request';
 import { Subscription } from 'rxjs';
+import { ModalFeedbackComponent } from '../modal-feedback/modal-feedback.component';
 
 @Component({
   selector: 'app-vendor',
@@ -38,7 +39,7 @@ export class VendorComponent implements OnInit, OnDestroy {
     [EVendorRequestStatus.DISABLED]: [ this.approvedOpt ],
     [EVendorRequestStatus.DECLINED]: [ this.approvedOpt ],
   };
-  private translationStatus = {
+  translationStatus = {
     [EVendorRequestStatus.PENDING]: 'Pendiente',
     [EVendorRequestStatus.APPROVED]: 'Aprobado',
     [EVendorRequestStatus.DISABLED]: 'Deshabilitado',
@@ -48,7 +49,8 @@ export class VendorComponent implements OnInit, OnDestroy {
 
   constructor(
     private actionSheetController: ActionSheetController,
-    private vendorRequestService: VendorRequestService
+    private vendorRequestService: VendorRequestService,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {}
@@ -66,16 +68,29 @@ export class VendorComponent implements OnInit, OnDestroy {
 
   onDispatchAction(status: EVendorRequestStatus): void {
     if (status !== EVendorRequestStatus.APPROVED) {
-      // Open modal to send feedback
+      this.modalController.create({
+        component: ModalFeedbackComponent
+      }).then(modal => {
+        modal.present();
+        modal.onWillDismiss().then(({data: {feedback}}) => {
+          this.onModalDismiss(status, feedback);
+        });
+      });
+    } else {
+      this.onModalDismiss(status);
     }
+  }
+
+  onModalDismiss(status: EVendorRequestStatus, feedback: string = '') {
     const vendorRequestParams = {
       status,
-      feedback: '',
+      feedback,
       vendor_id: this.vendor.id
     };
     this.vendorRequestSub = this.vendorRequestService.sendRequest(vendorRequestParams)
       .subscribe((vendorRequest) => {
         this.vendorRequest.status = vendorRequest.status;
+        this.vendorRequest.feedback = vendorRequest.feedback;
       });
   }
 
