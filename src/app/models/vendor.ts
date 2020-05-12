@@ -7,4 +7,7 @@ export interface Vendor {
   image?: string;
   logo?: string;
   slogan?: string;
+  contributor_type?: string;
+  mobile?: string;
+  category_id?: number;
 }
