@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./shared-pages/register/register.module').then( m => m.RegisterPageModule),
     canActivate: [OpenGuard]
+  },
+  {
+    path: 'edit-service',
+    loadChildren: () => import('./shared-pages/services/edit-service/edit-service.module').then( m => m.EditServicePageModule)
   }
 ];
 @NgModule({

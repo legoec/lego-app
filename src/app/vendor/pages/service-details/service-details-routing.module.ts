@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ServiceDetailsPage
+  },
+  {
+    path: 'edit/:id',
+    loadChildren: () => import('../../../shared-pages/services/edit-service/edit-service.module').then( m => m.EditServicePageModule)
   }
 ];
 
