@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { VendorActivity } from 'src/app/models/vendor-activity';
+import { Service } from 'src/app/models/service';
 
 @Component({
   selector: 'app-service-form',
@@ -8,8 +8,8 @@ import { VendorActivity } from 'src/app/models/vendor-activity';
   styleUrls: ['./service-form.component.scss'],
 })
 export class ServiceFormComponent implements OnInit {
-  @Input() vendorActivity: VendorActivity;
-  @Output() onSubmit: EventEmitter<VendorActivity> = new EventEmitter<VendorActivity>();
+  @Input() vendorActivity: Service;
+  @Output() onSubmit: EventEmitter<Service> = new EventEmitter<Service>();
   serviceFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }

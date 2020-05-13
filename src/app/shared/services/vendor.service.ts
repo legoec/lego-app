@@ -8,7 +8,7 @@ import { Vendor } from 'src/app/models/vendor';
 import { environment } from 'src/environments/environment';
 import { take, switchMap, map, tap } from 'rxjs/operators';
 import { VendorRequest } from 'src/app/models/vendor-request';
-import { VendorActivity } from 'src/app/models/vendor-activity';
+import { Service } from 'src/app/models/service';
 
 @Injectable({
   providedIn: 'root'
@@ -53,14 +53,14 @@ export class VendorService {
     return this.http.put<VendorRequest>(`${this.baseUrl}/${vendorId}`, formDataVendor);
   }
 
-  getMyServices(): Observable<VendorActivity> {
+  getMyServices(): Observable<Service> {
     return this.getVendorInformation().pipe(
       take(1),
       switchMap(vendor => this.getVendorServices(vendor))
     );
   }
 
-  getVendorServices(vendor: Vendor): Observable<VendorActivity> {
-    return this.http.get<VendorActivity>(`${this.vendorUrl}/${vendor.id}/services`);
+  getVendorServices(vendor: Vendor): Observable<Service> {
+    return this.http.get<Service>(`${this.vendorUrl}/${vendor.id}/services`);
   }
 }

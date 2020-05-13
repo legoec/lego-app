@@ -6,5 +6,5 @@ export interface Service {
     price?: number;
     amount?: boolean;
     vendor_id?: number;
-    vendor?: Vendor
+    vendor?: Vendor;
 }

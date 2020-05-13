@@ -15,4 +15,11 @@ export class ServicesService {
       return this.http.get<Service[]>(`${this.baseUrl}/categories/${categoryId}/services`);
   }
 
+  addService(service: Service): Observable<Service> {
+    return this.http.post<Service>(`${this.baseUrl}/services`, { service });
+  }
+
+  getService(id: number): Observable<Service> {
+    return this.http.get<Service>(`${this.baseUrl}/services/${id}`);
+  }
 }

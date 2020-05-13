@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VendorActivityService } from 'src/app/shared/services/vendor_activity.service';
 import { VendorService } from 'src/app/shared/services/vendor.service';
 import { Router } from '@angular/router';
-import { VendorActivity } from 'src/app/models/vendor-activity';
+import { Service } from 'src/app/models/service';
+import { ServicesService } from 'src/app/shared/services/services.service';
 
 @Component({
   selector: 'app-new-service',
@@ -12,7 +12,7 @@ import { VendorActivity } from 'src/app/models/vendor-activity';
 export class NewServicePage implements OnInit {
 
   constructor(
-    private vendorActivityService: VendorActivityService,
+    private servicesService: ServicesService,
     private vendorService: VendorService,
     private router: Router
   ) { }
@@ -22,11 +22,11 @@ export class NewServicePage implements OnInit {
 
   onSubtmitService(service) {
     this.vendorService.getVendorInformation().subscribe(vendor => {
-      const vendorActivity: VendorActivity = {
+      const vendorActivity: Service = {
         ...service,
         vendor_id: vendor.id
       };
-      this.vendorActivityService.addService(vendorActivity).subscribe(() => this.router.navigate(['/vendor/services']));
+      this.servicesService.addService(vendorActivity).subscribe(() => this.router.navigate(['/vendor/services']));
     });
   }
 

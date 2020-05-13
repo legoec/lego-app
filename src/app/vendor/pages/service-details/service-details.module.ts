@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ServiceDetailsPageRoutingModule } from './service-details-routing.module';
 
 import { ServiceDetailsPage } from './service-details.page';
-import { VendorActivityService } from 'src/app/shared/services/vendor_activity.service';
+import { ServicesService } from 'src/app/shared/services/services.service';
 
 @NgModule({
   imports: [
@@ -17,6 +17,6 @@ import { VendorActivityService } from 'src/app/shared/services/vendor_activity.s
     ServiceDetailsPageRoutingModule
   ],
   declarations: [ServiceDetailsPage],
-  providers: [VendorActivityService]
+  providers: [ServicesService]
 })
 export class ServiceDetailsPageModule {}
