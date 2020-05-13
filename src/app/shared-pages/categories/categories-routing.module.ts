@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CategoriesPage } from './categories.page';
 import { NewCategoryComponent } from './new-category/new-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { ServicesPageComponent } from '../services/services.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditCategoryComponent
+  },
+  {
+    path: 'categories/:id/services',
+    component: ServicesPageComponent
   }
 ];
 

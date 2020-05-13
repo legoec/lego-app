@@ -1,0 +1,13 @@
+<ion-card>
+  <ion-card-content class="service">
+      <div class="service__name">
+        {{service.name}}
+      </div>
+      <div class="service__price">
+        <div>{{ service.price | currency }}</div>
+      </div>
+      <div class="service__vendor-name">
+        <div>{{ service.vendor.business_name }}</div>
+      </div>
+  </ion-card-content>
+</ion-card>

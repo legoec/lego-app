@@ -9,11 +9,13 @@ import { CategoryComponent } from './category/category.component';
 
 import { CategoriesService } from './services/categories.service';
 import { AuthService } from './services/auth.service';
+import { ServicesService } from './services/services.service';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { VendorRequestService } from './services/vendor_request';
 import { ModalFeedbackComponent } from './modal-feedback/modal-feedback.component';
+import { ServiceComponent } from './service/service.component';
 
 const modules = [
     CommonModule,
@@ -28,13 +30,15 @@ const components = [
     ControlMessagesComponent,
     VendorsComponent,
     VendorComponent,
-    ModalFeedbackComponent
+    ModalFeedbackComponent,
+    ServiceComponent
 ];
 
 const providers = [
     CategoriesService,
     VendorRequestService,
-    AuthService
+    AuthService,
+    ServicesService
 ];
 
 @NgModule({

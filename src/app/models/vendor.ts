@@ -1,3 +1,5 @@
+import { Category } from './category';
+
 export interface Vendor {
   id?: number;
   ruc?: string;
@@ -10,4 +12,5 @@ export interface Vendor {
   contributor_type?: string;
   mobile?: string;
   category_id?: number;
+  category?: Category
 }
