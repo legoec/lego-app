@@ -34,7 +34,7 @@ export class VendorService {
       switchMap(userId => {
         return this.http.get<Vendor>(`${this.userVendorUrl}/${userId}/vendor`);
       })
-    )
+    );
   }
 
   getVendorRequest(): Observable<VendorRequest> {
@@ -53,14 +53,7 @@ export class VendorService {
     return this.http.put<VendorRequest>(`${this.baseUrl}/${vendorId}`, formDataVendor);
   }
 
-  getMyServices(): Observable<Service> {
-    return this.getVendorInformation().pipe(
-      take(1),
-      switchMap(vendor => this.getVendorServices(vendor))
-    );
-  }
-
-  getVendorServices(vendor: Vendor): Observable<Service> {
-    return this.http.get<Service>(`${this.vendorUrl}/${vendor.id}/services`);
+  getVendorServices(vendorId: number): Observable<Service> {
+    return this.http.get<Service>(`${this.vendorUrl}/${vendorId}/services`);
   }
 }
