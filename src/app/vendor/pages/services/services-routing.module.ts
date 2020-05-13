@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: ServicesPage
+  },
+  {
+    path: 'new-service',
+    loadChildren: () => import('../service-details/service-details.module').then( m => m.ServiceDetailsPageModule)
+  },
+  {
+    path: 'edit-service/:serviceId',
+    loadChildren: () => import('../service-details/service-details.module').then( m => m.ServiceDetailsPageModule)
   }
 ];
 
