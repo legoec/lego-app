@@ -16,5 +16,7 @@ export class VendorActivityService {
     return this.http.post<VendorActivity>(this.baseUrl, { service });
   }
 
-  getMyServices(vendorId: string) {}
+  getService(id: number): Observable<VendorActivity> {
+    return this.http.get<VendorActivity>(`${this.baseUrl}/${id}`);
+  }
 }

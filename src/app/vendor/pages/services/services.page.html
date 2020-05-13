@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let service of services$ | async">
-      <ion-item lines="inset" button [routerLink]="['edit-service', service.id]">
+      <ion-item lines="inset" button [routerLink]="['service-details', service.id]">
         <ion-label> {{ service.name }} </ion-label>
         <ion-note slot="end" color="primary">{{ service.price }}</ion-note>
       </ion-item>

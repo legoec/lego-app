@@ -1,3 +1,23 @@
-<ion-content>
-  Show vendor Details
+<ion-header>
+  <ion-toolbar>
+    <ion-title>service details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="service$ | async as service">
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        {{service.name}}
+      </ion-card-title>
+      <p>
+        ${{service.price}}
+        cant.{{service.amount}}
+      </p>
+    </ion-card-content>
+    <ion-button color="primary" expand="block">Editar</ion-button>
+  </ion-card>
+  <ion-button color="secondary" expand="block">
+    Añadir Recomendación
+  </ion-button>
 </ion-content>

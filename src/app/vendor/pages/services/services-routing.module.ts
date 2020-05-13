@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'new-service',
     loadChildren: () => import('../../../shared-pages/services/new-service/new-service.module').then( m => m.NewServicePageModule)
+  },
+  {
+    path: 'service-details/:id',
+    loadChildren: () => import('../service-details/service-details.module').then(m => m.ServiceDetailsPageModule)
   }
 ];
 
