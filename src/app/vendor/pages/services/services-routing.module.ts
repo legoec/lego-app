@@ -10,11 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'new-service',
-    loadChildren: () => import('../service-details/service-details.module').then( m => m.ServiceDetailsPageModule)
-  },
-  {
-    path: 'edit-service/:serviceId',
-    loadChildren: () => import('../service-details/service-details.module').then( m => m.ServiceDetailsPageModule)
+    loadChildren: () => import('../../../shared-pages/services/new-service/new-service.module').then( m => m.NewServicePageModule)
   }
 ];
 
