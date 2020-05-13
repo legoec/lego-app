@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NewServicePageRoutingModule } from './new-service-routing.module';
+import { EditServicePageRoutingModule } from './edit-service-routing.module';
 
-import { NewServicePage } from './new-service.page';
+import { EditServicePage } from './edit-service.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
@@ -14,12 +14,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    NewServicePageRoutingModule,
+    EditServicePageRoutingModule,
     ReactiveFormsModule,
     SharedModule
   ],
   declarations: [
-    NewServicePage
+    EditServicePage
   ]
 })
-export class NewServicePageModule {}
+export class EditServicePageModule {}

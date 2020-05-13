@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
@@ -16,12 +16,14 @@ import { VendorComponent } from './vendor/vendor.component';
 import { VendorRequestService } from './services/vendor_request';
 import { ModalFeedbackComponent } from './modal-feedback/modal-feedback.component';
 import { ServiceComponent } from './service/service.component';
+import { ServiceFormComponent } from './service-form/service-form.component';
 
 const modules = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
 ];
 
 const components = [
@@ -31,7 +33,8 @@ const components = [
     VendorsComponent,
     VendorComponent,
     ModalFeedbackComponent,
-    ServiceComponent
+    ServiceComponent,
+    ServiceFormComponent
 ];
 
 const providers = [

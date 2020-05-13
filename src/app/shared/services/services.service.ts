@@ -22,4 +22,8 @@ export class ServicesService {
   getService(id: number): Observable<Service> {
     return this.http.get<Service>(`${this.baseUrl}/services/${id}`);
   }
+
+  updateService(service: Service): Observable<Service> {
+    return this.http.put<Service>(`${this.baseUrl}/services/${service.id}`, { service });
+  }
 }

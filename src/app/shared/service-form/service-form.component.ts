@@ -8,7 +8,7 @@ import { Service } from 'src/app/models/service';
   styleUrls: ['./service-form.component.scss'],
 })
 export class ServiceFormComponent implements OnInit {
-  @Input() vendorActivity: Service;
+  @Input() vendorActivity: Service = {};
   @Output() onSubmit: EventEmitter<Service> = new EventEmitter<Service>();
   serviceFormGroup: FormGroup;
 
@@ -16,9 +16,9 @@ export class ServiceFormComponent implements OnInit {
 
   ngOnInit() {
     this.serviceFormGroup = this.formBuilder.group({
-      name: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
-      amount: ['', [Validators.required, Validators.min(0)]]
+      name: [this.vendorActivity.name, Validators.required],
+      price: [this.vendorActivity.price, [Validators.required, Validators.min(0)]],
+      amount: [this.vendorActivity.amount, [Validators.required, Validators.min(0)]]
     });
   }
 
