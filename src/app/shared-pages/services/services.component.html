@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Servicios {{category?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ng-container *ngFor="let service of services; let i = index">
+      <ion-col size="12">
+        <app-service [service]="service"></app-service>
+      </ion-col>
+    </ng-container>
+  </ion-row>
+</ion-content>

@@ -10,6 +10,7 @@ import { CategoriesPage } from './categories.page';
 import { NewCategoryComponent } from './new-category/new-category.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { ServicesPageComponent } from '../services/services.component';
 
 const modules = [
   CommonModule,
@@ -24,7 +25,8 @@ const components = [
   CategoriesPage,
   NewCategoryComponent,
   CategoryFormComponent,
-  EditCategoryComponent
+  EditCategoryComponent,
+  ServicesPageComponent
 ];
 
 @NgModule({
