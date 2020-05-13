@@ -88,7 +88,10 @@
     </div>
     <div *ngIf="vendorRequest.status !== 'pending'">
       El estado de tu solicitud es {{vendorRequest.status}}.
-      <span *ngIf="vendorRequest.feedback">La razón es {{vendorRequest.status}}</span>
+      <div *ngIf="vendorRequest.feedback">La razón es {{vendorRequest.feedback}}</div>
+      <ion-button (click)="resubmitRequest()">
+        Volver a enviar solicitud
+      </ion-button>
     </div>
   </div>
 </ion-content>

@@ -19,6 +19,7 @@ export class RegisterVendorComponent {
 
   renderForm: boolean = false;
   vendorRequest: VendorRequest = null;
+  isResubmit: boolean = false;
   registerFormGroup: FormGroup;
   categories$: Observable<Category[]> = this.categoriesService.getCategories();
 
@@ -31,6 +32,8 @@ export class RegisterVendorComponent {
   }
 
   ionViewWillEnter() {
+      this.renderForm = false;
+      this.isResubmit = false;
       this.vendorService.setVendor();
       this.vendorService.getVendorRequest().subscribe(vendorRequest => {
         if (vendorRequest) {
@@ -50,7 +53,7 @@ export class RegisterVendorComponent {
       });
   }
 
-  private createForm() {
+  private createForm(isResubmit = false) {
     this.registerFormGroup = this.formBuilder.group({
       ruc: ['', Validators.required],
       economic_activity: ['', Validators.required],
@@ -63,11 +66,37 @@ export class RegisterVendorComponent {
       mobile: ['', Validators.required],
       category_id: ['', Validators.required]
     });
+    if(isResubmit) {
+      const {
+        ruc,
+        economic_activity,
+        contributor_type,
+        legal_representative,
+        business_name,
+        image,
+        logo,
+        slogan,
+        mobile,
+        category_id } = this.vendorRequest.vendor;
+      this.registerFormGroup.patchValue({
+        ruc,
+        economic_activity,
+        contributor_type,
+        legal_representative,
+        business_name,
+        image,
+        logo,
+        slogan,
+        mobile,
+        category_id });
+    }
   }
 
   onSubmit() {
     const formDataVendor = this.createFormData(this.registerFormGroup.value);
-    this.vendorService.createVendor(formDataVendor).subscribe(async () => {
+    const subscription = this.isResubmit ?
+      this.vendorService.updateVendor(formDataVendor, this.vendorRequest.vendor.id) : this.vendorService.createVendor(formDataVendor);
+    subscription.subscribe(async () => {
       this.router.navigate(['']);
       const toast = await this.toastController.create({
         message: 'Tu solicitud está siendo procesada!',
@@ -97,6 +126,12 @@ export class RegisterVendorComponent {
       formDataVendor.append(key, vendor[key]);
     });
     return formDataVendor;
+  }
+
+  resubmitRequest(): void {
+    this.isResubmit = true;
+    this.renderForm = true;
+    this.createForm(true);
   }
 
 }

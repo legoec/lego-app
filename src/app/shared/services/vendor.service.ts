@@ -46,4 +46,8 @@ export class VendorService {
   createVendor(formDataVendor: FormData): Observable<VendorRequest> {
     return this.http.post<VendorRequest>(this.baseUrl, formDataVendor);
   }
+
+  updateVendor(formDataVendor: FormData, vendorId: number): Observable<VendorRequest> {
+    return this.http.put<VendorRequest>(`${this.baseUrl}/${vendorId}`, formDataVendor);
+  }
 }
