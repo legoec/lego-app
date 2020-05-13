@@ -5,5 +5,17 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item-sliding *ngFor="let service of services$ | async">
+      <ion-item lines="inset" button [routerLink]="['service', service.id]">
+        <ion-label> {{ service.name }} </ion-label>
+        <ion-note slot="end" color="primary">{{ service.price }}</ion-note>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['new']" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

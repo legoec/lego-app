@@ -1,0 +1,35 @@
+<form class="service-form" [formGroup]="serviceFormGroup" (ngSubmit)="submitForm()">
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item>
+      <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="name" name="name" type="text"></ion-input>
+    </ion-item>
+    <app-control-messages [control]="serviceFormGroup.get('name')">
+    </app-control-messages>
+
+    <ion-item>
+      <ion-label position="stacked">Valor<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="price" name="price" type="number"></ion-input>
+    </ion-item>
+    <app-control-messages [control]="serviceFormGroup.get('price')">
+    </app-control-messages>
+
+    <ion-item>
+      <ion-label position="stacked">Cantidad<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="amount" name="amount" type="number"></ion-input>
+    </ion-item>
+    <app-control-messages [control]="serviceFormGroup.get('amount')">
+    </app-control-messages>
+
+    <div class="ion-padding">
+      <ion-button
+        expand="block"
+        type="submit"
+        class="ion-no-margin"
+        [disabled]="serviceFormGroup.invalid">
+        Guardar
+      </ion-button>
+    </div>
+  </ion-list>
+</form>
+

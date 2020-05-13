@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Vendor } from 'src/app/models/vendor';
 import { environment } from 'src/environments/environment';
-import { take, switchMap } from 'rxjs/operators';
+import { take, switchMap, map, tap } from 'rxjs/operators';
 import { VendorRequest } from 'src/app/models/vendor-request';
+import { Service } from 'src/app/models/service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ import { VendorRequest } from 'src/app/models/vendor-request';
 export class VendorService {
 
   private userVendorUrl: string = `${environment.apiBase}/v0/users`;
+  private vendorUrl: string = `${environment.apiBase}/v0/vendor`;
   private baseUrl: string = `${environment.apiBase}/v0/vendors`;
 
   constructor(
@@ -32,7 +34,7 @@ export class VendorService {
       switchMap(userId => {
         return this.http.get<Vendor>(`${this.userVendorUrl}/${userId}/vendor`);
       })
-    )
+    );
   }
 
   getVendorRequest(): Observable<VendorRequest> {
@@ -49,5 +51,9 @@ export class VendorService {
 
   updateVendor(formDataVendor: FormData, vendorId: number): Observable<VendorRequest> {
     return this.http.put<VendorRequest>(`${this.baseUrl}/${vendorId}`, formDataVendor);
+  }
+
+  getVendorServices(vendorId: number): Observable<Service> {
+    return this.http.get<Service>(`${this.vendorUrl}/${vendorId}/services`);
   }
 }
