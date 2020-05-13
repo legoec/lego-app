@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./edit-service.page.scss'],
 })
 export class EditServicePage implements OnInit {
-  service: Service;
+  vendorActivity: Service;
 
   constructor(
     private servicesService: ServicesService,
@@ -21,16 +21,16 @@ export class EditServicePage implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.pipe(
       map(param => parseInt(param.id, 10))).subscribe(id => {
-        this.servicesService.getService(id).subscribe(service => this.service = service);
+        this.servicesService.getService(id).subscribe(vendorActivity => this.vendorActivity = vendorActivity);
     });
   }
 
   onSubtmitService(service) {
-    this.service = {
-      ...this.service,
+    this.vendorActivity = {
+      ...this.vendorActivity,
       ...service
     };
-    this.servicesService.updateService(service).subscribe(() => this.router.navigate(['/vendor/services']));
+    this.servicesService.updateService(this.vendorActivity).subscribe(() => this.router.navigate(['/vendor/services']));
   }
 
 }
