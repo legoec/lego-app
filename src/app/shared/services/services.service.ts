@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
@@ -9,10 +9,11 @@ import { Service } from '../../models/service';
 export class ServicesService {
   constructor(private http: HttpClient) { }
 
-  private baseUrl: string = `${environment.apiBase}/v0/`;
+  private baseUrl: string = `${environment.apiBase}/v0`;
 
-  getServicesFromCategory(categoryId: number): Observable<Service[]> {
-      return this.http.get<Service[]>(`${this.baseUrl}/categories/${categoryId}/services`);
+  getServicesFromCategory(categoryId: number, query: string = ''): Observable<Service[]> {
+    const params = new HttpParams().set('query', query);
+    return this.http.get<Service[]>(`${this.baseUrl}/categories/${categoryId}/services`, { params });
   }
 
   addService(service: Service): Observable<Service> {

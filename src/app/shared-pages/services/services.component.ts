@@ -35,4 +35,10 @@ export class ServicesPageComponent implements OnInit {
     });
   }
 
+  onSearch(query: string) {
+    this.servicesService.getServicesFromCategory(this.category.id, query).subscribe(services => {
+      this.services = services;
+    });
+  }
+
 }
