@@ -11,7 +11,7 @@
   <ion-row>
     <ng-container *ngFor="let service of services$ | async; let i = index">
       <ion-col size="12">
-        <app-service [service]="service"></app-service>
+        <app-service [service]="service" [routerLink]="['/client/services', service.id]"></app-service>
       </ion-col>
     </ng-container>
   </ion-row>

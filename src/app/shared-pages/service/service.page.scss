@@ -1,0 +1,23 @@
+.service {
+
+    &__vendor-card, &__service-card {
+        padding: 1rem;
+
+        &__title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__vendor-card {
+
+        &__business-name {
+            font-size: 1.5rem;
+        }
+
+        &__logo {
+            height: 3rem;
+            border-radius: 50%;
+        }
+    }
+}
