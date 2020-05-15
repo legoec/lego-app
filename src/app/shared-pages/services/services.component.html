@@ -9,10 +9,16 @@
     <ion-searchbar placeholder="Buscar" debounce="500" (ionChange)="onSearch($event.target.value)"></ion-searchbar>
   </ion-row>
   <ion-row>
-    <ng-container *ngFor="let service of services$ | async; let i = index">
+    <ng-container *ngFor="let service of services; let i = index">
       <ion-col size="12">
         <app-service [service]="service"></app-service>
       </ion-col>
     </ng-container>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Cargando mas servicios...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </ion-row>
 </ion-content>
