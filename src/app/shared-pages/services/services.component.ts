@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { ServicesService } from 'src/app/shared/services/services.service';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-services',
@@ -14,7 +15,7 @@ import { CategoriesService } from 'src/app/shared/services/categories.service';
 })
 export class ServicesPageComponent implements OnInit {
 
-  services: Service[];
+  services$: Observable<Service[]>;
   category: Category;
 
   constructor(
@@ -26,9 +27,7 @@ export class ServicesPageComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.pipe(
       map(param => parseInt(param.id))).subscribe(id => {
-      this.servicesService.getServicesFromCategory(id).subscribe(services => {
-        this.services = services;
-      });
+      this.services$ = this.servicesService.getServicesFromCategory(id);
       this.categoryService.getCategory(id).subscribe(category => {
         this.category = category;
       });
@@ -36,9 +35,7 @@ export class ServicesPageComponent implements OnInit {
   }
 
   onSearch(query: string) {
-    this.servicesService.getServicesFromCategory(this.category.id, query).subscribe(services => {
-      this.services = services;
-    });
+    this.services$ = this.servicesService.getServicesFromCategory(this.category.id, query);
   }
 
 }
