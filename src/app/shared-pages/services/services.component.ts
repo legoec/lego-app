@@ -58,4 +58,8 @@ export class ServicesPageComponent implements OnInit {
     });
   }
 
+  trackByFn(index, item) {
+    return item.id;
+  }
+
 }
