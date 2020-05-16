@@ -10,6 +10,7 @@ import { CategoryComponent } from './category/category.component';
 import { CategoriesService } from './services/categories.service';
 import { AuthService } from './services/auth.service';
 import { ServicesService } from './services/services.service';
+import { RecomendationsService } from './services/recomendations.service';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { VendorComponent } from './vendor/vendor.component';
@@ -41,7 +42,8 @@ const providers = [
     CategoriesService,
     VendorRequestService,
     AuthService,
-    ServicesService
+    ServicesService,
+    RecomendationsService
 ];
 
 @NgModule({

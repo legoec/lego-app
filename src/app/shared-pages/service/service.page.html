@@ -28,5 +28,26 @@
         {{ service?.price | currency }}
       </ion-row>
     </div>
+    <div class="service__recomendations-card">
+      <ion-row class="service__recomendations-card__title">
+        Recomendaciones
+      </ion-row>
+      <ion-row *ngIf="(recomendations$ | async)?.lenght === 0">
+        No hay recomendaciones. Sé el primero en dejarlas
+      </ion-row>
+      <ion-row *ngFor="let recomendation of recomendations$ | async">
+        <ion-card class="service__recomendations-card-recommendation">
+          <ion-row>
+            <ion-col size="1">
+              <ion-img class="service__vendor-card__logo"[src]="recomendation?.user.image || '/assets/company.png'"></ion-img>
+            </ion-col>
+            <ion-col size="11">
+              <div class="service__vendor-card__business-name">{{recomendation?.user.name}}</div>
+              <div class="service__vendor-card__mobile">{{recomendation?.description}}</div>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-row>
+    </div>
   </ion-card>
 </ion-content>
