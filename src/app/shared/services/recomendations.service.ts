@@ -10,7 +10,7 @@ import { Recomendation } from 'src/app/models/recomendation';
 export class RecomendationsService {
   constructor(private http: HttpClient) { }
 
-  private baseUrl: string = `${environment.apiBase}/v0`;
+  private baseUrl = `${environment.apiBase}/v0`;
 
   getRecomendationsFromService(serviceId: number): Observable<Recomendation[]> {
     return this.http.get<Recomendation[]>(`${this.baseUrl}/services/${serviceId}/recomendations`);

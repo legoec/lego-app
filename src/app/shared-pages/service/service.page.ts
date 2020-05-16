@@ -47,18 +47,18 @@ export class ServicePage implements OnInit {
   }
 
   onSubmitRecomendationForm() {
-    combineLatest(
+    combineLatest([
       this.authService.getAuthenticadUser(),
       this.activatedRoute.params.pipe(
-        map(param => parseInt(param.id, 10)))).subscribe(([user, id]) => {
-          let recomendation = this.recomendationForm.value;
+        map(param => parseInt(param.id, 10)))]).subscribe(([user, id]) => {
+          const recomendation = this.recomendationForm.value;
           recomendation.user_id = user.id;
           recomendation.service_id = id;
           this.recomendationsService.createRecomendation(recomendation).subscribe(() => {
             this.toastController.create({
               message: 'Gracias por enviar tu recomendación!',
               duration: 2000,
-              color:'success'
+              color: 'success'
             }).then(toast => {
               toast.present();
             });

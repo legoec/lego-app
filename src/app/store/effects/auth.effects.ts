@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { tap, map, switchMap, catchError } from 'rxjs/operators';
-import { Location } from "@angular/common";
+import { Location } from '@angular/common';
 
 
 import { AngularTokenService } from 'angular-token';

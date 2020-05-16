@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { BarRatingModule } from "ngx-bar-rating";
+import { BarRatingModule } from 'ngx-bar-rating';
 
 import { AuthEffects } from './store/effects/auth.effects';
 import { VendorEffects } from './store/effects/vendor.effects';
