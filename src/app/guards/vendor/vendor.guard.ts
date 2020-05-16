@@ -19,7 +19,7 @@ export class VendorGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return combineLatest(this.authService.getAuthenticadUser(), this.vendorService.getVendorRequest()).pipe(
+      return combineLatest([this.authService.getAuthenticadUser(), this.vendorService.getVendorRequest()]).pipe(
         map(([user, vendorRequest]) => {
           return !!user && !!vendorRequest && vendorRequest.status === EVendorRequestStatus.APPROVED || this.router.parseUrl('');
         })
