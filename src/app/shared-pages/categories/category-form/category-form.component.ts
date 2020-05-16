@@ -34,6 +34,6 @@ export class CategoryFormComponent implements OnInit {
       ...this.category,
       ...this.categoryFormGroup.value
     };
-    this.onSubmit.emit(this.category);
+    this.submitCallback.emit(this.category);
   }
 }
