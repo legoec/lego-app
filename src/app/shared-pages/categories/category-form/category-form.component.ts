@@ -10,7 +10,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class CategoryFormComponent implements OnInit {
 
   @Input() category: Category = {};
-  @Output() onSubmit: EventEmitter<Category> = new EventEmitter<Category>();
+  @Output() submitCallback: EventEmitter<Category> = new EventEmitter<Category>();
   categoryFormGroup: FormGroup;
 
   constructor(

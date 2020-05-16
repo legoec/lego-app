@@ -9,7 +9,7 @@ import { VendorRequest } from 'src/app/models/vendor-request';
   styleUrls: ['./vendors.component.scss'],
 })
 export class VendorsComponent implements OnInit {
-  @Input() isAdmin: boolean = false;
+  @Input() isAdmin = false;
   vendorRequests$: Observable<VendorRequest[]>;
 
   constructor(

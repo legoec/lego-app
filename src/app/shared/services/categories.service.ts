@@ -9,7 +9,7 @@ import { Category } from '../../models/category';
 export class CategoriesService {
   constructor(private http: HttpClient) { }
 
-  private baseUrl: string = `${environment.apiBase}/v0/categories`;
+  private baseUrl = `${environment.apiBase}/v0/categories`;
 
   getCategories(): Observable<Category[]> {
       return this.http.get<Category[]>(this.baseUrl);

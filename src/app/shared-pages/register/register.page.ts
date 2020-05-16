@@ -41,7 +41,7 @@ export class RegisterPage implements OnInit {
   async onError(errors: {}) {
     Object.keys(errors).forEach(key => {
       const formField = this.registerFormGroup.controls[key];
-      formField.setErrors({'backendError': errors[key].join('. ')});
+      formField.setErrors({backendError: errors[key].join('. ')});
     });
   }
 }

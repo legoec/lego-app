@@ -7,7 +7,7 @@ import * as vendor from './reducers/vendor.reducers';
 
 export interface AppState {
   authState: auth.State;
-  vendorState: vendor.State
+  vendorState: vendor.State;
 }
 
 export const reducers = {

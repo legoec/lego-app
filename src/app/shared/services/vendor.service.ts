@@ -15,9 +15,9 @@ import { Service } from 'src/app/models/service';
 })
 export class VendorService {
 
-  private userVendorUrl: string = `${environment.apiBase}/v0/users`;
-  private vendorUrl: string = `${environment.apiBase}/v0/vendor`;
-  private baseUrl: string = `${environment.apiBase}/v0/vendors`;
+  private userVendorUrl = `${environment.apiBase}/v0/users`;
+  private vendorUrl = `${environment.apiBase}/v0/vendor`;
+  private baseUrl = `${environment.apiBase}/v0/vendors`;
 
   constructor(
     private store: Store<AppState>,

@@ -14,7 +14,7 @@ interface ServicePagination {
 export class ServicesService {
   constructor(private http: HttpClient) { }
 
-  private baseUrl: string = `${environment.apiBase}/v0`;
+  private baseUrl = `${environment.apiBase}/v0`;
 
   getServicesFromCategory(categoryId: number, query: string = '', page: number = 1): Observable<ServicePagination> {
     const params = new HttpParams().set('query', query).set('page', `${page}`);

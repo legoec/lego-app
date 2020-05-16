@@ -10,7 +10,7 @@ import { Category } from 'src/app/models/category';
 export class CategoryComponent implements OnInit {
 
   @Input() category: Category;
-  @Input() isAdmin: boolean = false;
+  @Input() isAdmin = false;
 
   constructor() { }
 

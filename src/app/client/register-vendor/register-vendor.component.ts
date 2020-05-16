@@ -17,9 +17,9 @@ import { Vendor } from 'src/app/models/vendor';
 })
 export class RegisterVendorComponent {
 
-  renderForm: boolean = false;
+  renderForm = false;
   vendorRequest: VendorRequest = null;
-  isResubmit: boolean = false;
+  isResubmit = false;
   registerFormGroup: FormGroup;
   categories$: Observable<Category[]> = this.categoriesService.getCategories();
 
@@ -66,7 +66,7 @@ export class RegisterVendorComponent {
       mobile: ['', Validators.required],
       category_id: ['', Validators.required]
     });
-    if(isResubmit) {
+    if (isResubmit) {
       const {
         ruc,
         economic_activity,
@@ -106,7 +106,7 @@ export class RegisterVendorComponent {
     }, error => {
       Object.keys(error.errors).forEach(key => {
         const formField = this.registerFormGroup.controls[key];
-        formField.setErrors({'backendError': error.errors[key].join('. ')});
+        formField.setErrors({backendError: error.errors[key].join('. ')});
       });
     });
   }

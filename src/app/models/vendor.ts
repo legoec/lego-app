@@ -12,5 +12,5 @@ export interface Vendor {
   contributor_type?: string;
   mobile?: string;
   category_id?: number;
-  category?: Category
+  category?: Category;
 }

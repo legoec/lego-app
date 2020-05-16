@@ -26,5 +26,5 @@ export function loadUser(
             )
             .toPromise()
             .catch(() => true);
-    }
+    };
 }

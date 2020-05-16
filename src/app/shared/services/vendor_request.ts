@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class VendorRequestService {
   constructor(private http: HttpClient) { }
 
-  private baseUrl: string = `${environment.apiBase}/v0/vendor_requests`;
+  private baseUrl = `${environment.apiBase}/v0/vendor_requests`;
 
   sendRequest(vendorRequest: VendorRequest) {
     return this.http.post<VendorRequest>(this.baseUrl, { vendor_request: vendorRequest });

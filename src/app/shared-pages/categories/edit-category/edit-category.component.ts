@@ -21,7 +21,7 @@ export class EditCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.pipe(
-      map(param => parseInt(param.id))).subscribe(id => {
+      map(param => parseInt(param.id, 10))).subscribe(id => {
       this.categoriesService.getCategory(id).subscribe(category => {
         this.category = category;
       });
