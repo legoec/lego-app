@@ -27,6 +27,6 @@ export class ServiceFormComponent implements OnInit {
       ...this.vendorActivity,
       ...this.serviceFormGroup.value
     };
-    this.onSubmit.emit(this.vendorActivity);
+    this.submitCallback.emit(this.vendorActivity);
   }
 }
