@@ -27,7 +27,7 @@ export function reducer(state = initialState, action: All): State {
       return {
         ...state,
         ...initialState
-      }
+      };
     }
     default: {
       return state;

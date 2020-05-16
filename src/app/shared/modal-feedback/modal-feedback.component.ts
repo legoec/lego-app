@@ -9,10 +9,10 @@ import { ModalController } from '@ionic/angular';
 export class ModalFeedbackComponent {
   feedback: string;
 
-  constructor(private modalInstance: ModalController){
+  constructor(private modalInstance: ModalController) {
   }
 
-  onSubmit():void {
+  onSubmit(): void {
     this.modalInstance.dismiss({
         feedback: this.feedback
     });

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CategoriesComponent implements OnInit {
 
-  @Input() isAdmin: boolean = false;
+  @Input() isAdmin = false;
   categories: Category[] = [];
 
   constructor(

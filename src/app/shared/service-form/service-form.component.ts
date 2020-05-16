@@ -9,7 +9,7 @@ import { Service } from 'src/app/models/service';
 })
 export class ServiceFormComponent implements OnInit {
   @Input() vendorActivity: Service = {};
-  @Output() onSubmit: EventEmitter<Service> = new EventEmitter<Service>();
+  @Output() submitCallback: EventEmitter<Service> = new EventEmitter<Service>();
   serviceFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
