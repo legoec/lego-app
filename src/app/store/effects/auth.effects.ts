@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { tap, map, switchMap, catchError } from 'rxjs/operators';
+import { Location } from "@angular/common";
+
 
 import { AngularTokenService } from 'angular-token';
 import {
@@ -24,6 +26,7 @@ export class AuthEffects {
     private actions: Actions,
     private authService: AngularTokenService,
     private router: Router,
+    private location: Location
   ) { }
 
   LogIn: Observable<any> = createEffect(() => this.actions
@@ -47,9 +50,8 @@ export class AuthEffects {
       const userData: User = user;
       if (userData.admin) {
         this.router.navigate(['/admin']);
-      } else {
-        this.router.navigate(['/client']);
       }
+      this.location.back();
     })
   ), { dispatch: false });
 

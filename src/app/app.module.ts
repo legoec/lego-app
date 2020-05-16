@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BarRatingModule } from "ngx-bar-rating";
 
 import { AuthEffects } from './store/effects/auth.effects';
 import { VendorEffects } from './store/effects/vendor.effects';
@@ -37,6 +38,7 @@ import { loadUser } from './providers/load-user';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    BarRatingModule
   ],
   providers: [
     StatusBar,

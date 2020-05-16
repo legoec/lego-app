@@ -16,4 +16,8 @@ export class RecomendationsService {
     return this.http.get<Recomendation[]>(`${this.baseUrl}/services/${serviceId}/recomendations`);
   }
 
+  createRecomendation(recomendation: Recomendation): Observable<Recomendation> {
+    return this.http.post<Recomendation>(`${this.baseUrl}/recomendations`, { recomendation });
+  }
+
 }

@@ -18,6 +18,9 @@
       </ion-row>
     </div>
     <div class="service__service-card" *ngIf="(service$ | async) as service">
+      <ion-row>
+        <bar-rating [rate]="service?.average" [readOnly]="true"></bar-rating>
+      </ion-row>
       <ion-row class="service__service-card__title">
         Detalles
       </ion-row>
@@ -35,18 +38,50 @@
       <ion-row *ngIf="(recomendations$ | async)?.lenght === 0">
         No hay recomendaciones. Sé el primero en dejarlas
       </ion-row>
+      <ion-row *ngIf="!(isAuthenticated$ | async)">
+        <a routerLink="/login">
+          Inicia sesión para poder dejar tu recomendación.
+        </a>
+      </ion-row>
+      <ion-row *ngIf="isAuthenticated$ | async">
+        <form [formGroup]="recomendationForm"(ngSubmit)="onSubmitRecomendationForm()">
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+              <ion-label position="stacked">Descipción<ion-text color="danger">*</ion-text></ion-label>
+              <ion-textarea formControlName="description" name="description" type="text"></ion-textarea>
+            </ion-item>
+            <app-control-messages [control]="recomendationForm.get('description')">
+            </app-control-messages>
+
+            <bar-rating name="ranking" formControlName="ranking" required disabled></bar-rating>
+
+            <div class="ion-padding">
+              <ion-button
+                expand="block"
+                type="submit"
+                class="ion-no-margin"
+                [disabled]="recomendationForm.invalid">
+                Enviar
+              </ion-button>
+            </div>
+          </ion-list>
+        </form>
+      </ion-row>
       <ion-row *ngFor="let recomendation of recomendations$ | async">
-        <ion-card class="service__recomendations-card-recommendation">
-          <ion-row>
-            <ion-col size="1">
-              <ion-img class="service__vendor-card__logo"[src]="recomendation?.user.image || '/assets/company.png'"></ion-img>
-            </ion-col>
-            <ion-col size="11">
-              <div class="service__vendor-card__business-name">{{recomendation?.user.name}}</div>
-              <div class="service__vendor-card__mobile">{{recomendation?.description}}</div>
-            </ion-col>
-          </ion-row>
-        </ion-card>
+        <ion-col size="12">
+          <ion-card class="service__recomendations-card-recommendation">
+            <ion-row>
+              <ion-col size="1">
+                <ion-img class="service__vendor-card__logo"[src]="recomendation?.user.image || '/assets/company.png'"></ion-img>
+              </ion-col>
+              <ion-col size="11">
+                <div class="service__vendor-card__business-name">{{recomendation?.user.name}}</div>
+                <div class="service__vendor-card__mobile">{{recomendation?.description}}</div>
+                <bar-rating [rate]="recomendation?.ranking" [readOnly]="true"></bar-rating>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
       </ion-row>
     </div>
   </ion-card>
