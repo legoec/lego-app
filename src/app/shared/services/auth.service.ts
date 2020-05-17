@@ -59,8 +59,16 @@ export class AuthService {
   resetPassword(email: string) {
     const params = {
       email,
-      redirect_url: 'http://localhost:4200/reset_password'
+      redirect_url: `${environment.url}/password-reset`
     };
     return this.http.post(`${environment.apiBase}/v0/auth/password`, params);
+  }
+
+  updatePassword(password: string, confirmPassword: string) {
+    const params = {
+      password,
+      password_confirmation: confirmPassword
+    };
+    return this.http.put(`${environment.apiBase}/v0/auth/password`, params);
   }
 }
