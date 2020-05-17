@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./shared-pages/register/register.module').then( m => m.RegisterPageModule),
     canActivate: [OpenGuard]
+  },
+  {
+    path: 'password-recover',
+    loadChildren: () => import('./shared-pages/password-recover/password-recover.module').then( m => m.PasswordRecoverPageModule)
   }
 ];
 @NgModule({

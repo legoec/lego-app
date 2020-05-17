@@ -11,6 +11,8 @@ import { filter } from 'rxjs/operators';
 import { LogIn, LogOut, SignIn, } from 'src/app/store/actions/auth.actions';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ import { User } from 'src/app/models/user';
 export class AuthService {
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private http: HttpClient
   ) { }
 
   startAuthenticationUser(payload): void {
@@ -51,5 +54,13 @@ export class AuthService {
     return this.store.select(getSignUpError).pipe(
       filter(errorMessage => !!errorMessage)
     );
+  }
+
+  resetPassword(email: string) {
+    const params = {
+      email,
+      redirect_url: 'http://localhost:4200/reset_password'
+    };
+    return this.http.post(`${environment.apiBase}/v0/auth/password`, params);
   }
 }
