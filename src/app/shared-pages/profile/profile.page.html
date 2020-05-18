@@ -1,6 +1,9 @@
 <ion-content>
   <div class="user-info" *ngIf="user$ | async">
-    <h1>Bienvenido {{(user$ | async)?.name}}</h1>
+    <div class="header">
+      <ion-label>Bienvenido {{(user$ | async)?.name}}</ion-label>
+      <ion-icon name="create-outline" routerLink="/client/edit"></ion-icon>
+    </div>
     <ion-button
       *ngIf="((user$ | async) && (!(vendor$ | async)) || ((vendor$ | async)?.status !== 'approved'))"
       color="success"

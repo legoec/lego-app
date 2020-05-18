@@ -59,6 +59,12 @@ export function reducer(state = initialState, action: All): State {
         errorMessageSignUp: action.payload.errors
       };
     }
+    case AuthActionTypes.UPDATE_USER: {
+      return {
+        ...state,
+        user: action.payload.user
+      };
+    }
     default: {
       return state;
     }
