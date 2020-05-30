@@ -21,6 +21,13 @@
       Cambiar a cliente
     </ion-button>
     <ion-button
+      *ngIf="((user$ | async) && ((vendor$ | async)) && ((vendor$ | async)?.status === 'approved'))"
+      color="primary"
+      expand="block"
+      routerLink="/vendor/edit-vendor-profile">
+      Editar perfil de vendor
+    </ion-button>
+    <ion-button
       color="secondary"
       expand="block"
       (click)="onLogout()">

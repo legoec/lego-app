@@ -25,6 +25,11 @@ const routes: Routes = [
         loadChildren: () => import('../shared-pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
+        path: 'edit-vendor-profile',
+        loadChildren: () => import('./pages/edit-vendor-profile/edit-vendor-profile.module')
+          .then(m => m.EditVendorProfilePageModule)
+      },
+      {
         path: '',
         redirectTo: '/vendor/services',
         pathMatch: 'full'
