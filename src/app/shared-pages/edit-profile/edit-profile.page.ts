@@ -8,6 +8,7 @@ import { AppState } from 'src/app/store/app.states';
 import { Store } from '@ngrx/store';
 import { UpdateUser } from 'src/app/store/actions/auth.actions';
 import { Location } from '@angular/common';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-profile',
@@ -24,7 +25,8 @@ export class EditProfilePage implements OnInit {
     private userService: UserService,
     private alertController: AlertController,
     private store: Store<AppState>,
-    private location: Location
+    private location: Location,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -47,6 +49,7 @@ export class EditProfilePage implements OnInit {
       resp => {
         this.store.dispatch(new UpdateUser({ user }));
         this.location.back();
+        this.onSucces();
       }
       , error => this.onError(error.errors)
     );
@@ -59,5 +62,13 @@ export class EditProfilePage implements OnInit {
       buttons: ['Aceptar']
     });
     await alert.present();
+  }
+
+  async onSucces() {
+    const toast = await this.toastController.create({
+      message: 'Tu perfil ha sido actualizado!',
+      duration: 2000
+    });
+    toast.present();
   }
 }
