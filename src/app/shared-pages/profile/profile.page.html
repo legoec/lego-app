@@ -1,7 +1,9 @@
 <ion-content>
-  <div class="user-info" *ngIf="user$ | async">
+  <div class="user-info" *ngIf="user$ | async as user">
     <div class="header">
-      <ion-label>Bienvenido {{(user$ | async)?.name}}</ion-label>
+      <ion-label>Bienvenido {{user?.name}}</ion-label>
+      <ion-label>Email: {{user?.email}}</ion-label>
+      <ion-label>Alias: {{user?.nickname}}</ion-label>
       <ion-icon name="create-outline" routerLink="/client/edit"></ion-icon>
     </div>
     <ion-button
