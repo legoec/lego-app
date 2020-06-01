@@ -1,0 +1,36 @@
+<ion-content *ngIf="user">
+  <form class="user-form" [formGroup]="userFormGroup" (ngSubmit)="submitForm()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="name" name="name" type="text"></ion-input>
+      </ion-item>
+      <app-control-messages [control]="userFormGroup.get('name')">
+      </app-control-messages>
+
+      <ion-item>
+        <ion-label position="stacked">Nickname</ion-label>
+        <ion-input formControlName="nickname" nickname="nickname" type="text"></ion-input>
+      </ion-item>
+      <app-control-messages [control]="userFormGroup.get('nickname')">
+      </app-control-messages>
+
+      <ion-item>
+        <ion-label position="stacked">Email<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="email" name="email" type="email" required></ion-input>
+      </ion-item>
+      <app-control-messages [control]="userFormGroup.get('email')">
+      </app-control-messages>
+
+      <div class="ion-padding">
+        <ion-button
+          expand="block"
+          type="submit"
+          class="ion-no-margin"
+          [disabled]="userFormGroup.invalid">
+          Guardar
+        </ion-button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

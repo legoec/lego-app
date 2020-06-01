@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../shared-pages/service/service.module').then(m => m.ServicePageModule)
       },
       {
+        path: 'edit',
+        loadChildren: () => import('../shared-pages/edit-profile/edit-profile.module').then(m => m.EditProfilePageModule)
+      },
+      {
         path: '',
         redirectTo: '/client/home',
         pathMatch: 'full'
