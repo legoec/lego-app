@@ -7,19 +7,28 @@
       <ion-icon name="create-outline" routerLink="/client/edit"></ion-icon>
     </div>
     <ion-button
-      *ngIf="((user$ | async) && (!(vendor$ | async)) || ((vendor$ | async)?.status !== 'approved'))"
+      *ngIf="(user && (!(vendor$ | async)) || ((vendor$ | async)?.status !== 'approved'))"
       color="success"
       expand="block"
       routerLink="/client/register-vendor">
       Cambiar a vendor
     </ion-button>
-    <ion-button
-      *ngIf="((user$ | async) && ((vendor$ | async)) && ((vendor$ | async)?.status === 'approved'))"
-      color="success"
-      expand="block"
-      routerLink="/client">
-      Cambiar a cliente
-    </ion-button>
+    <span *ngIf="vendor$ | async as vendor">
+      <ion-button
+        *ngIf="(user && vendor && vendor?.status === 'approved')"
+        color="success"
+        expand="block"
+        routerLink="/client">
+        Cambiar a cliente
+      </ion-button>
+      <ion-button
+        *ngIf="(user && vendor && vendor?.status === 'approved')"
+        color="primary"
+        expand="block"
+        routerLink="/vendor/edit-vendor-profile">
+        Editar perfil de vendor
+      </ion-button>
+    </span>
     <ion-button
       color="secondary"
       expand="block"
