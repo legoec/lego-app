@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  url: process.env.URL,
-  apiBase: process.env.API_URL,
+  url: 'https://legoec-app.herokuapp.com/',
+  apiBase: 'https://legoec-api.herokuapp.com/',
 };
