@@ -1,5 +1,13 @@
 <ion-content *ngIf="user">
   <form class="user-form" [formGroup]="userFormGroup" (ngSubmit)="submitForm()">
+    <ion-avatar (click)="openUploader()">
+      <img [src]="file || user?.image?.url || 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+      <ion-icon name="camera" color="light"></ion-icon>
+      <input class="uploader"
+        type="file"
+        accept=".png,.gif,.jpeg"
+        (change)="onFileChange($event)"/>
+    </ion-avatar>
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
         <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>

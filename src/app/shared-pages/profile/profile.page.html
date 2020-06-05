@@ -7,7 +7,7 @@
   <div class="user-info" *ngIf="user$ | async as user">
     <div class="header">
       <ion-avatar>
-        <img [src]="user?.image || 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+        <img [src]="user?.image?.url || 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
       </ion-avatar>
       <ion-label color="primary">Bienvenido {{user?.name}}
         <ion-icon name="create-outline" routerLink="/client/edit"></ion-icon>

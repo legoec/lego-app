@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -18,6 +18,7 @@ import { ToastController } from '@ionic/angular';
 export class EditProfilePage implements OnInit {
   userFormGroup: FormGroup;
   user: User;
+  file: string | ArrayBuffer;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +27,8 @@ export class EditProfilePage implements OnInit {
     private alertController: AlertController,
     private store: Store<AppState>,
     private location: Location,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private elRef: ElementRef,
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class EditProfilePage implements OnInit {
       this.userFormGroup = this.formBuilder.group({
         name: [this.user.name, Validators.required],
         nickname: [this.user.nickname],
+        image: [''],
         email: [this.user.email, [Validators.required, Validators.email]]
       });
     });
@@ -45,7 +48,8 @@ export class EditProfilePage implements OnInit {
       ...this.user,
       ...this.userFormGroup.value
     };
-    this.userService.updateUser(this.user.id, this.userFormGroup.value).subscribe(
+    const formDataUser = this.createFormData(user);
+    this.userService.updateUser(this.user.id, formDataUser).subscribe(
       resp => {
         this.store.dispatch(new UpdateUser({ user }));
         this.location.back();
@@ -70,5 +74,28 @@ export class EditProfilePage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  onFileChange(event): void {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.userFormGroup.controls.image.setValue(file);
+        this.file = reader.result;
+      };
+    }
+  }
+
+  openUploader(): void {
+    const uploadComponent = this.elRef.nativeElement.querySelector('input');
+    uploadComponent.click();
+  }
+
+  createFormData(user: User): FormData {
+    const formDataVendor = new FormData();
+    Object.keys(user).forEach(key => formDataVendor.append(key, user[key]));
+    return formDataVendor;
   }
 }
