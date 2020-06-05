@@ -18,7 +18,7 @@ import { ToastController } from '@ionic/angular';
 export class EditProfilePage implements OnInit {
   userFormGroup: FormGroup;
   user: User;
-  file: string | ArrayBuffer;
+  imageBase64: string | ArrayBuffer;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,6 +51,7 @@ export class EditProfilePage implements OnInit {
     const formDataUser = this.createFormData(user);
     this.userService.updateUser(this.user.id, formDataUser).subscribe(
       resp => {
+        user.image.url = this.imageBase64;
         this.store.dispatch(new UpdateUser({ user }));
         this.location.back();
         this.onSucces();
@@ -83,7 +84,7 @@ export class EditProfilePage implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.userFormGroup.controls.image.setValue(file);
-        this.file = reader.result;
+        this.imageBase64 = reader.result;
       };
     }
   }
