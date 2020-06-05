@@ -11,8 +11,8 @@ export class UserService {
 
   private baseUrl = `${environment.apiBase}/v0/users`;
 
-  updateUser(id: number, user: User): Observable<User> {
-    return this.http.put<User>(`${this.baseUrl}/${id}`, { user });
+  updateUser(id: number, formDataUser: FormData): Observable<User> {
+    return this.http.put<User>(`${this.baseUrl}/${id}`, formDataUser);
   }
 
 }

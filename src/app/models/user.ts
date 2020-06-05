@@ -5,4 +5,9 @@ export interface User {
   admin?: boolean;
   isVendor?: boolean;
   nickname?: string;
+  image?: Image;
+}
+
+interface Image {
+  url: string;
 }
