@@ -118,4 +118,13 @@ export class EditVendorProfilePage implements OnInit {
     return formDataVendor;
   }
 
+  onFileChange(event, key): void {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => this.registerFormGroup.controls[key].setValue(file);
+    }
+  }
+
 }
