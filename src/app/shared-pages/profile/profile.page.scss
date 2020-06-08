@@ -11,4 +11,19 @@
       padding-right: 5px;
     }
   }
+
+  .vendor-container {
+
+    .company-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-top: 10px;
+      ion-label {
+        color: var(--ion-color-primary);
+        font-size: 18px;
+      }
+    }
+  }
 }
