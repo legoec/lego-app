@@ -38,7 +38,7 @@
         <ion-label color="secondary" slot="end">{{vendorRequest?.vendor?.mobile}}</ion-label>
       </ion-item>
       <ion-button
-        *ngIf="(user && vendor && vendor?.status === 'approved')"
+        *ngIf="(user && vendorRequest && vendorRequest?.status === 'approved')"
         color="success"
         expand="block"
         routerLink="/client">
