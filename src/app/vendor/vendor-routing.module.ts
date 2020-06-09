@@ -17,10 +17,6 @@ const routes: Routes = [
         loadChildren: () => import('./pages/services/services.module').then( m => m.ServicesPageModule)
       },
       {
-        path: 'agreements',
-        loadChildren: () => import('./pages/agreements/agreements.module').then( m => m.AgreementsPageModule)
-      },
-      {
         path: 'profile',
         loadChildren: () => import('../shared-pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
