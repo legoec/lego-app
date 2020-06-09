@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Editar Perfil de Compañía</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <form class="register-form" [formGroup]="registerFormGroup"(ngSubmit)="onSubmit()">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">

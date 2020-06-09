@@ -1,3 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Servicio</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <app-service-form *ngIf="vendorActivity" [vendorActivity]="vendorActivity" (submitCallback)="onSubtmitService($event)"></app-service-form>
 </ion-content>

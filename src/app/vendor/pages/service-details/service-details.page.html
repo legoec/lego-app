@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header *ngIf="service$ | async as service">
   <ion-toolbar>
-    <ion-title>service details</ion-title>
+    <ion-title>{{service.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +17,4 @@
     </ion-card-content>
     <ion-button color="primary" expand="block" [routerLink]="['edit', service.id]">Editar</ion-button>
   </ion-card>
-  <ion-button color="secondary" expand="block">
-    Añadir Recomendación
-  </ion-button>
 </ion-content>
