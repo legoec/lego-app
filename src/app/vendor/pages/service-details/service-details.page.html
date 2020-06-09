@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content *ngIf="service$ | async as service">
-  <ion-card>
+  <ion-card *ngIf="service">
     <ion-card-content>
       <ion-card-title>
         {{service.name}}
@@ -16,5 +16,15 @@
       </p>
     </ion-card-content>
     <ion-button color="primary" expand="block" [routerLink]="['edit', service.id]">Editar</ion-button>
+  </ion-card>
+  <ion-card *ngIf="!service">
+    <ion-card-content>
+      <ion-card-title>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-card-title>
+      <p>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </p>
+    </ion-card-content>
   </ion-card>
 </ion-content>
