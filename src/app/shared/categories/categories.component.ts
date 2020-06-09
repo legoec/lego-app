@@ -13,7 +13,7 @@ export class CategoriesComponent implements OnInit {
 
   @Input() isAdmin = false;
   categories: Category[] = [];
-
+  placeholders = [1, 2, 3, 4, 5];
   constructor(
     private categoriesService: CategoriesService,
     private router: Router

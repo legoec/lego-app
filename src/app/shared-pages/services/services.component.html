@@ -8,7 +8,7 @@
   <ion-row>
     <ion-searchbar placeholder="Buscar" debounce="500" (ionChange)="onSearch($event.target.value)"></ion-searchbar>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="services">
     <ng-container *ngFor="let service of services; trackBy: trackByFn">
       <ion-col size="12">
         <app-service [service]="service" [routerLink]="['/client/services', service.id]"></app-service>
@@ -20,5 +20,12 @@
         loadingText="Cargando más servicios...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
+  </ion-row>
+  <ion-row *ngIf="!services">
+    <ng-container *ngFor="let service of placeholders; let i = index">
+      <ion-col size="12">
+        <ion-skeleton-text style="height: 5.5rem" animated></ion-skeleton-text>
+      </ion-col>
+    </ng-container>
   </ion-row>
 </ion-content>

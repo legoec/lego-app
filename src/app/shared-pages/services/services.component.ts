@@ -18,6 +18,7 @@ export class ServicesPageComponent implements OnInit {
   category: Category;
   query: string;
   currentPage: number;
+  placeholders = [1, 2, 3, 4, 5];
 
   constructor(
     private servicesService: ServicesService,

@@ -50,7 +50,7 @@
         <form [formGroup]="recomendationForm"(ngSubmit)="onSubmitRecomendationForm()">
           <ion-list lines="full" class="ion-no-margin ion-no-padding">
             <ion-item>
-              <ion-label position="stacked">Descipción<ion-text color="danger">*</ion-text></ion-label>
+              <ion-label position="stacked">Descripción<ion-text color="danger">*</ion-text></ion-label>
               <ion-textarea formControlName="description" name="description" type="text"></ion-textarea>
             </ion-item>
             <app-control-messages [control]="recomendationForm.get('description')">
