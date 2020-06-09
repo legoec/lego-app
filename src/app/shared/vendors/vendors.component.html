@@ -1,6 +1,14 @@
 <ion-list *ngIf="isAdmin">
-  <app-vendor *ngFor="let vendorRequest of vendorRequests$ | async; let i = index"
-    [vendorRequest]="vendorRequest"
-    [vendor]="vendorRequest.vendor">
-  </app-vendor>
+  <div *ngIf="(vendorRequests$ | async)">
+    <app-vendor *ngFor="let vendorRequest of vendorRequests$ | async; let i = index"
+      [vendorRequest]="vendorRequest"
+      [vendor]="vendorRequest.vendor">
+    </app-vendor>
+  </div>
+  <div *ngIf="!(vendorRequests$ | async)">
+    <ion-skeleton-text *ngFor="let placeholder of placeholders; let i = index"
+      style="height: 4rem"
+      animated>
+    </ion-skeleton-text>
+  </div>
 </ion-list>

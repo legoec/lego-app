@@ -11,6 +11,7 @@ import { VendorRequest } from 'src/app/models/vendor-request';
 export class VendorsComponent implements OnInit {
   @Input() isAdmin = false;
   vendorRequests$: Observable<VendorRequest[]>;
+  placeholders = [1, 2, 3, 4, 5];
 
   constructor(
     private vendorRequestService: VendorRequestService
