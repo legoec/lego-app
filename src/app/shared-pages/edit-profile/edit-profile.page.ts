@@ -36,7 +36,6 @@ export class EditProfilePage implements OnInit {
       this.user = user;
       this.userFormGroup = this.formBuilder.group({
         name: [this.user.name, Validators.required],
-        nickname: [this.user.nickname],
         image: [''],
         email: [this.user.email, [Validators.required, Validators.email]]
       });
