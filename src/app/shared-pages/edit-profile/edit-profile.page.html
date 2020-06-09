@@ -1,3 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content *ngIf="user">
   <form class="user-form" [formGroup]="userFormGroup" (ngSubmit)="submitForm()">
     <ion-avatar (click)="openUploader()">
