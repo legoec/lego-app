@@ -9,28 +9,28 @@
       </app-control-messages>
 
       <ion-item>
-        <ion-label position="stacked">Email<ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="stacked">Correo<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="email" name="email" type="email"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('email')">
       </app-control-messages>
 
       <ion-item>
-        <ion-label position="stacked">Password<ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="stacked">Contraseña<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="password" name="password" type="password"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('password')">
       </app-control-messages>
 
       <ion-item>
-        <ion-label position="stacked">Confirmar Password<ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="stacked">Confirmar contraseña<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="confirm_password" name="confirm_password" type="password"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('confirm_password')">
       </app-control-messages>
 
       <div class="ion-padding">
-        <ion-button 
+        <ion-button
           expand="block"
           type="submit"
           class="ion-no-margin"

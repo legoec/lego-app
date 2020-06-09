@@ -2,21 +2,21 @@
   <form class="login-form" [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label position="stacked">Email<ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="stacked">Correo<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="email" name="email" type="email" required></ion-input>
       </ion-item>
       <app-control-messages [control]="loginFormGroup.get('email')">
       </app-control-messages>
 
       <ion-item>
-        <ion-label position="stacked">Password<ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="stacked">Contraseña<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="password" name="password" type="password" required></ion-input>
       </ion-item>
       <app-control-messages [control]="loginFormGroup.get('password')">
       </app-control-messages>
 
       <div class="recover-pass">
-        <ion-label routerLink="/password-recover">Olvidaste tu Password?</ion-label>
+        <ion-label routerLink="/password-recover">Olvidaste tu contraseña?</ion-label>
       </div>
 
       <div class="ion-padding">
