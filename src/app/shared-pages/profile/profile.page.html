@@ -20,26 +20,28 @@
       </ion-item>
     </div>
     <div *ngIf="vendor$ | async as vendorRequest" class="vendor-container">
-      <div class="company-title">
-        <ion-label class="company-label" color="primary">Empresa, {{vendorRequest?.vendor?.business_name}}
-          <ion-icon name="create-outline" routerLink="/vendor/edit-vendor-profile"></ion-icon>
-        </ion-label>
-      </div>
-      <ion-item>
-        <ion-label color="primary">Ruc:</ion-label>
-        <ion-label color="secondary" slot="end">{{vendorRequest?.vendor?.ruc}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label color="primary">Teléfono:</ion-label>
-        <ion-label color="secondary" slot="end">{{vendorRequest?.vendor?.mobile}}</ion-label>
-      </ion-item>
-      <ion-button
-        *ngIf="(user && vendorRequest && vendorRequest?.status === 'approved')"
-        color="success"
-        expand="block"
-        routerLink="/client">
-        Cambiar a cliente
-      </ion-button>
+      <template *ngIf="vendorRequest?.status === approved">
+        <div class="company-title">
+          <ion-label class="company-label" color="primary">Empresa, {{vendorRequest?.vendor?.business_name}}
+            <ion-icon name="create-outline" routerLink="/vendor/edit-vendor-profile"></ion-icon>
+          </ion-label>
+        </div>
+        <ion-item>
+          <ion-label color="primary">Ruc:</ion-label>
+          <ion-label color="secondary" slot="end">{{vendorRequest?.vendor?.ruc}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary">Teléfono:</ion-label>
+          <ion-label color="secondary" slot="end">{{vendorRequest?.vendor?.mobile}}</ion-label>
+        </ion-item>
+        <ion-button
+          *ngIf="(user && vendorRequest && vendorRequest?.status === 'approved')"
+          color="success"
+          expand="block"
+          routerLink="/client">
+          Cambiar a cliente
+        </ion-button>
+      </template>
     </div>
     <ion-button
       *ngIf="(user && (!(vendor$ | async)) || ((vendor$ | async)?.status !== 'approved'))"

@@ -54,22 +54,20 @@ export class ServicePage implements OnInit {
           const recomendation = this.recomendationForm.value;
           recomendation.user_id = user.id;
           recomendation.service_id = id;
-          this.recomendationsService.createRecomendation(recomendation).subscribe(() => {
-            this.toastController.create({
-              message: 'Gracias por enviar tu recomendación!',
+          this.recomendationsService.createRecomendation(recomendation).subscribe(async () => {
+            const toast = await this.toastController.create({
+              message: 'Gracias por enviar tu recomendación',
               duration: 2000,
               color: 'success'
-            }).then(toast => {
-              toast.present();
             });
-          }, (error) => {
-            this.toastController.create({
+            toast.present();
+          }, async (error) => {
+            const toast = await this.toastController.create({
               message: `Ha ocurrido un error. ${error}`,
               duration: 2000,
               color: 'danger'
-            }).then(toast => {
-              toast.present();
             });
+            toast.present();
           });
         });
   }

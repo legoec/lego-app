@@ -99,15 +99,21 @@ export class RegisterVendorComponent {
     subscription.subscribe(async () => {
       this.router.navigate(['']);
       const toast = await this.toastController.create({
-        message: 'Tu solicitud está siendo procesada!',
+        message: 'Tu solicitud está siendo procesada',
         duration: 2000
       });
       toast.present();
-    }, error => {
+    }, async (error) => {
       Object.keys(error.errors).forEach(key => {
         const formField = this.registerFormGroup.controls[key];
         formField.setErrors({backendError: error.errors[key].join('. ')});
       });
+      const toast = await this.toastController.create({
+        message: 'Error al enviar los datos',
+        color: 'danger',
+        duration: 2000
+      });
+      toast.present();
     });
   }
 

@@ -71,7 +71,8 @@ export class EditProfilePage implements OnInit {
   async onSucces() {
     const toast = await this.toastController.create({
       message: 'Tu perfil ha sido actualizado!',
-      duration: 2000
+      duration: 2000,
+      color: 'success'
     });
     toast.present();
   }
