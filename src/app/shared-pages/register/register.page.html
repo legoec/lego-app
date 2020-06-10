@@ -24,9 +24,9 @@
 
       <ion-item>
         <ion-label position="stacked">Confirmar contraseña<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input formControlName="confirm_password" name="confirm_password" type="password"></ion-input>
+        <ion-input formControlName="password_confirmation" name="password_confirmation" type="password"></ion-input>
       </ion-item>
-      <app-control-messages [control]="registerFormGroup.get('confirm_password')">
+      <app-control-messages [control]="registerFormGroup.get('password_confirmation')">
       </app-control-messages>
 
       <div class="ion-padding">

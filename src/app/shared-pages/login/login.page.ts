@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { AuthService } from '../../shared/services/auth.service';
+import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,9 @@ export class LoginPage implements OnInit {
   loginFormGroup: FormGroup;
 
   constructor(
-    private alertController: AlertController,
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -37,12 +38,12 @@ export class LoginPage implements OnInit {
   }
 
   async onError(error: string) {
-    const alert = await this.alertController.create({
-      header: 'Ups.!',
+    const toast = await this.toastController.create({
       message: error,
-      buttons: ['Aceptar']
+      color: 'danger',
+      duration: 2000
     });
-    await alert.present();
+    toast.present();
   }
 
 }

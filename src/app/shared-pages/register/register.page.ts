@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ export class RegisterPage implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -24,7 +26,7 @@ export class RegisterPage implements OnInit {
         Validators.email
       ])],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirm_password: ['', [Validators.required, Validators.minLength(6)]],
+      password_confirmation: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -33,7 +35,7 @@ export class RegisterPage implements OnInit {
       name: this.registerFormGroup.value.name,
       login: this.registerFormGroup.value.email,
       password: this.registerFormGroup.value.password,
-      passwordConfirmation: this.registerFormGroup.value.confirm_password,
+      passwordConfirmation: this.registerFormGroup.value.password_confirmation,
     };
     this.authService.signIn(payloadSignIn);
   }
@@ -43,5 +45,11 @@ export class RegisterPage implements OnInit {
       const formField = this.registerFormGroup.controls[key];
       formField.setErrors({backendError: errors[key].join('. ')});
     });
+    const toast = await this.toastController.create({
+      message: 'Error al enviar los datos',
+      color: 'danger',
+      duration: 2000
+    });
+    toast.present();
   }
 }
