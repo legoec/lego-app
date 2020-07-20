@@ -20,7 +20,7 @@
       </ion-item>
     </div>
     <div *ngIf="vendor$ | async as vendorRequest" class="vendor-container">
-      <template *ngIf="vendorRequest?.status === 'approved'">
+      <div *ngIf="vendorRequest?.status === 'approved'">
         <div class="company-title">
           <ion-label class="company-label" color="primary">Empresa, {{vendorRequest?.vendor?.business_name}}
             <ion-icon name="create-outline" routerLink="/vendor/edit-vendor-profile"></ion-icon>
@@ -41,7 +41,7 @@
           routerLink="/client">
           Cambiar a cliente
         </ion-button>
-      </template>
+      </div>
     </div>
     <ion-button
       *ngIf="(user && (!(vendor$ | async)) || ((vendor$ | async)?.status !== 'approved'))"

@@ -36,7 +36,7 @@ export class EditProfilePage implements OnInit {
       this.user = user;
       this.userFormGroup = this.formBuilder.group({
         name: [this.user.name, Validators.required],
-        image: [''],
+        image: [this.user.image],
         email: [this.user.email, [Validators.required, Validators.email]]
       });
     });
@@ -50,7 +50,7 @@ export class EditProfilePage implements OnInit {
     const formDataUser = this.createFormData(user);
     this.userService.updateUser(this.user.id, formDataUser).subscribe(
       resp => {
-        user.image.url = this.imageBase64;
+        user.image = { url : this.imageBase64 || this.user.image.url };
         this.store.dispatch(new UpdateUser({ user }));
         this.location.back();
         this.onSucces();
