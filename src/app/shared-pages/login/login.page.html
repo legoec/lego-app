@@ -1,25 +1,29 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Iniciar sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <div class="title-container">
+    <ion-label class="title">Iniciar sesión</ion-label>
+    <ion-label class="subtitle">Incia sesión para continuar</ion-label>
+  </div>
   <form class="login-form" [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item>
+      <ion-item class="ion-no-padding">
         <ion-label position="stacked">Correo<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="email" name="email" type="email" required></ion-input>
       </ion-item>
       <app-control-messages [control]="loginFormGroup.get('email')">
       </app-control-messages>
 
-      <ion-item>
+      <ion-item class="ion-no-padding margin-top">
         <ion-label position="stacked">Contraseña<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input formControlName="password" name="password" type="password" required></ion-input>
+        <ion-input formControlName="password" name="password"[type]="passwordType" clearOnEdit="false" required></ion-input>
+        <ion-icon class="password-icon" [name]="passwordIcon" (click)='hideShowPassword()' slot="end"></ion-icon>
       </ion-item>
       <app-control-messages [control]="loginFormGroup.get('password')">
       </app-control-messages>
@@ -28,14 +32,17 @@
         <ion-label routerLink="/password-recover">Olvidaste tu contraseña?</ion-label>
       </div>
 
-      <div class="ion-padding">
-        <ion-button
+      <ion-button
+          shape="round"
           expand="block"
           type="submit"
           class="ion-no-margin"
           [disabled]="loginFormGroup.invalid">
           Iniciar Sesion
-        </ion-button>
+      </ion-button>
+
+      <div class="sign-up">
+        <ion-label>No tienes una cuenta? <ion-label routerLink="/register" color="primary">Registrate</ion-label></ion-label>
       </div>
     </ion-list>
   </form>
