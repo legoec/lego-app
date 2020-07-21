@@ -11,6 +11,8 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class LoginPage implements OnInit {
   loginFormGroup: FormGroup;
+  passwordType: string;
+  passwordIcon: string;
 
   constructor(
     private authService: AuthService,
@@ -19,6 +21,8 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.passwordType = 'password';
+    this.passwordIcon = 'eye-off';
     this.authService.getAuthError().subscribe(errorMessage => this.onError(errorMessage));
     this.loginFormGroup = this.formBuilder.group({
       email: ['', Validators.compose([
@@ -44,6 +48,11 @@ export class LoginPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
 }

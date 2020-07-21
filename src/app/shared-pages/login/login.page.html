@@ -19,7 +19,8 @@
 
       <ion-item>
         <ion-label position="stacked">Contraseña<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input formControlName="password" name="password" type="password" required></ion-input>
+        <ion-input formControlName="password" name="password"[type]="passwordType" clearOnEdit="false" required></ion-input>
+        <ion-icon class="password-icon" [name]="passwordIcon" (click)='hideShowPassword()' slot="end"></ion-icon>
       </ion-item>
       <app-control-messages [control]="loginFormGroup.get('password')">
       </app-control-messages>
