@@ -1,20 +1,29 @@
 .login-form {
-  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
   ion-list {
-    width: 90%;
+    width: 100%;
   }
 
   .recover-pass {
     margin-top: 1rem;
     text-align: end;
+    font-size: 15px;
+    color: var(--ion-color-medium);
+  }
+
+  ion-button {
+    margin-top: 2rem;
   }
 
   ion-item {
+
+    &.margin-top {
+      margin-top: 1rem;
+    }
 
     .password-icon {
       font-size:2rem !important;
@@ -22,5 +31,35 @@
       top: 22px !important;
       margin: 0 auto !important;
     }
+  }
+
+  .sign-up {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 15px;
+    color: var(--ion-color-medium);
+  }
+}
+
+ion-toolbar {
+  --background: transparent;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  height: 30%;
+  width: 100%;
+
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--ion-color-medium);
   }
 }
