@@ -8,7 +8,7 @@ const routes: Routes = [
     component: ClientPage,
     children: [
       {
-        path: 'home',
+        path: 'categories',
         loadChildren: () => import('../shared-pages/categories/categories.module').then(m => m.CategoriesPageModule)
       },
       {
@@ -16,27 +16,19 @@ const routes: Routes = [
         loadChildren: () => import('../shared-pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
-        path: 'register-vendor',
-        loadChildren: () => import('./register-vendor/register-vendor.module').then(m => m.RegisterVendorModule)
-      },
-      {
-        path: 'services',
-        loadChildren: () => import('../shared-pages/service/service.module').then(m => m.ServicePageModule)
-      },
-      {
         path: 'edit',
         loadChildren: () => import('../shared-pages/edit-profile/edit-profile.module').then(m => m.EditProfilePageModule)
       },
       {
         path: '',
-        redirectTo: '/client/home',
+        redirectTo: '/client/categories',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/client/home',
+    redirectTo: '/client/categories',
     pathMatch: 'full'
   }
 ];

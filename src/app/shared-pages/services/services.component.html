@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Servicios {{category?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +14,7 @@
   <ion-row *ngIf="services">
     <ng-container *ngFor="let service of services; trackBy: trackByFn">
       <ion-col size="12">
-        <app-service [service]="service" [routerLink]="['/client/services', service.id]"></app-service>
+        <app-service [service]="service" [routerLink]="['/client/categories/services', service.id]"></app-service>
       </ion-col>
     </ng-container>
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
