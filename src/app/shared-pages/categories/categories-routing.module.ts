@@ -20,8 +20,12 @@ const routes: Routes = [
     component: EditCategoryComponent
   },
   {
-    path: 'categories/:id/services',
+    path: ':id/services',
     component: ServicesPageComponent
+  },
+  {
+    path: 'services',
+    loadChildren: () => import('../../shared-pages/service/service.module').then(m => m.ServicePageModule)
   }
 ];
 
