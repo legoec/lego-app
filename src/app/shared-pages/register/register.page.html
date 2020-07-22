@@ -1,13 +1,16 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Registrarse</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <div class="page-title">
+    <ion-label class="page-title__primary">Registrarse</ion-label>
+    <ion-label class="page-title__secondary">Regístrate para unirte</ion-label>
+  </div>
   <form class="register-form" [formGroup]="registerFormGroup"(ngSubmit)="onSignIn()">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
@@ -40,6 +43,7 @@
 
       <div class="ion-padding">
         <ion-button
+          shape="round"
           expand="block"
           type="submit"
           class="ion-no-margin"
@@ -49,4 +53,7 @@
       </div>
     </ion-list>
   </form>
+  <div class="login">
+    <ion-label>Ya tienes una cuenta? <ion-label routerLink="/login" color="primary">Inicia sesión</ion-label></ion-label>
+  </div>
 </ion-content>
