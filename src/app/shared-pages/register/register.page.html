@@ -1,45 +1,49 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Registrarse</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form class="register-form" [formGroup]="registerFormGroup"(ngSubmit)="onSignIn()">
+<ion-content class="ion-padding">
+  <div class="page-title">
+    <ion-label class="page-title__primary">Registrarse</ion-label>
+    <ion-label class="page-title__secondary">Regístrate para unirte</ion-label>
+  </div>
+  <form class="register-form ion-no-padding" [formGroup]="registerFormGroup"(ngSubmit)="onSignIn()">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item>
+      <ion-item class="ion-no-padding">
         <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="name" name="name" type="text"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('name')">
       </app-control-messages>
 
-      <ion-item>
+      <ion-item class="ion-no-padding ion-margin-top">
         <ion-label position="stacked">Correo<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="email" name="email" type="email"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('email')">
       </app-control-messages>
 
-      <ion-item>
+      <ion-item class="ion-no-padding ion-margin-top">
         <ion-label position="stacked">Contraseña<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="password" name="password" type="password"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('password')">
       </app-control-messages>
 
-      <ion-item>
+      <ion-item class="ion-no-padding ion-margin-top">
         <ion-label position="stacked">Confirmar contraseña<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="password_confirmation" name="password_confirmation" type="password"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('password_confirmation')">
       </app-control-messages>
 
-      <div class="ion-padding">
+      <div class="ion-padding ion-margin-top">
         <ion-button
+          shape="round"
           expand="block"
           type="submit"
           class="ion-no-margin"
@@ -49,4 +53,7 @@
       </div>
     </ion-list>
   </form>
+  <div class="login">
+    <ion-label>Ya tienes una cuenta? <ion-label routerLink="/login" color="primary">Inicia sesión</ion-label></ion-label>
+  </div>
 </ion-content>
