@@ -11,37 +11,37 @@
     <ion-label class="page-title__primary">Registrarse</ion-label>
     <ion-label class="page-title__secondary">Regístrate para unirte</ion-label>
   </div>
-  <form class="register-form" [formGroup]="registerFormGroup"(ngSubmit)="onSignIn()">
+  <form class="register-form ion-no-padding" [formGroup]="registerFormGroup"(ngSubmit)="onSignIn()">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item>
+      <ion-item class="ion-no-padding">
         <ion-label position="stacked">Nombre<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="name" name="name" type="text"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('name')">
       </app-control-messages>
 
-      <ion-item>
+      <ion-item class="ion-no-padding ion-margin-top">
         <ion-label position="stacked">Correo<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="email" name="email" type="email"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('email')">
       </app-control-messages>
 
-      <ion-item>
+      <ion-item class="ion-no-padding ion-margin-top">
         <ion-label position="stacked">Contraseña<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="password" name="password" type="password"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('password')">
       </app-control-messages>
 
-      <ion-item>
+      <ion-item class="ion-no-padding ion-margin-top">
         <ion-label position="stacked">Confirmar contraseña<ion-text color="danger">*</ion-text></ion-label>
         <ion-input formControlName="password_confirmation" name="password_confirmation" type="password"></ion-input>
       </ion-item>
       <app-control-messages [control]="registerFormGroup.get('password_confirmation')">
       </app-control-messages>
 
-      <div class="ion-padding">
+      <div class="ion-padding ion-margin-top">
         <ion-button
           shape="round"
           expand="block"
