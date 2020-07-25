@@ -8,6 +8,13 @@
     </app-control-messages>
 
     <ion-item>
+      <ion-label position="stacked">Ícono<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="icon" name="icon" type="text"></ion-input>
+    </ion-item>
+    <app-control-messages [control]="categoryFormGroup.get('icon')">
+    </app-control-messages>
+
+    <ion-item>
       <ion-label position="stacked">Porcentage<ion-text color="danger">*</ion-text></ion-label>
       <ion-input formControlName="percentage" name="percentage" type="number"></ion-input>
     </ion-item>
@@ -32,4 +39,3 @@
     </div>
   </ion-list>
 </form>
-

@@ -1,6 +1,9 @@
 <ion-card>
   <ion-card-content>
-    <div class="category-container" [routerLink]="['/client/categories', category.id, 'services']">
+    <div class="category-container" [routerLink]="!isAdmin ? ['/client/categories', category.id, 'services'] : []">
+      <ion-icon class="category-icon" *ngIf="!isAdmin && category?.icon"
+        color="primary"
+        [name]="category?.icon"></ion-icon>
       <div class="name">
         {{category.name}}
       </div>
