@@ -20,6 +20,7 @@ export class CategoryFormComponent implements OnInit {
   ngOnInit() {
     this.categoryFormGroup = this.formBuilder.group({
       name: [this.category.name, Validators.required],
+      icon: [this.category.icon, Validators.required],
       percentage: [this.category.percentage, Validators.compose([
         Validators.required,
         Validators.min(0),
