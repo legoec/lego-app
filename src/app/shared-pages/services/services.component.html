@@ -3,17 +3,17 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Servicios {{category?.name}}</ion-title>
+    <ion-title>{{category?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="services">
   <ion-row>
     <ion-searchbar placeholder="Buscar" debounce="500" (ionChange)="onSearch($event.target.value)"></ion-searchbar>
   </ion-row>
-  <ion-row *ngIf="services">
+  <ion-row *ngIf="services" class="services__container ion-padding">
     <ng-container *ngFor="let service of services; trackBy: trackByFn">
-      <ion-col size="12">
+      <ion-col size="12" class="ion-no=padding">
         <app-service [service]="service" [routerLink]="['/client/categories/services', service.id]"></app-service>
       </ion-col>
     </ng-container>

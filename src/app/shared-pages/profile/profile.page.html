@@ -37,6 +37,7 @@
         <ion-button
           *ngIf="(user && vendorRequest && vendorRequest?.status === 'approved')"
           color="success"
+          shape="round"
           expand="block"
           routerLink="/client">
           Cambiar a cliente
@@ -46,12 +47,14 @@
     <ion-button
       *ngIf="(user && (!(vendor$ | async)) || ((vendor$ | async)?.status !== 'approved'))"
       color="success"
+      shape="round"
       expand="block"
       routerLink="/client/profile/register-vendor">
       Cambiar a Empresa
     </ion-button>
     <ion-button
       color="secondary"
+      shape="round"
       expand="block"
       (click)="onLogout()">
       Cerrar Sesion
@@ -60,6 +63,7 @@
   <ion-button
     *ngIf="!(user$ | async)"
     color="primary"
+    shape="round"
     expand="block"
     routerLink="/login">
     Iniciar Sesion
@@ -67,6 +71,7 @@
   <ion-button
     *ngIf="!(user$ | async)"
     color="light"
+    shape="round"
     expand="block"
     routerLink="/register">
     Registrarse
