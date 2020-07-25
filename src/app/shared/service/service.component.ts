@@ -8,7 +8,6 @@ import { Service } from 'src/app/models/service';
   styleUrls: ['./service.component.scss'],
 })
 export class ServiceComponent implements OnInit {
-
   @Input() service: Service;
 
   constructor() { }
