@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-password-recover',
@@ -13,10 +13,10 @@ export class PasswordRecoverPage implements OnInit {
   recoverFormGroup: FormGroup;
 
   constructor(
-    private alertController: AlertController,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -25,24 +25,17 @@ export class PasswordRecoverPage implements OnInit {
     });
   }
 
-  onSubmit() {
-    const email = this.recoverFormGroup.value.email;
-    this.authService.resetPassword(email).subscribe(
-      (resp: any) => {
-        this.showAlert('En Hora buena', resp.message);
-        this.router.navigateByUrl('login');
-      },
-      ({ error }) => this.showAlert('Ups!', error.erros)
-    );
-  }
-
-  async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['Aceptar']
-    });
-    await alert.present();
+  async onSubmit() {
+    if (this.recoverFormGroup.valid) {
+      const email = this.recoverFormGroup.value.email;
+      this.authService.resetPassword(email).subscribe();
+      this.router.navigateByUrl('login');
+      const toast = await this.toastController.create({
+        message: 'Tu solicitud está siendo procesada.',
+        duration: 2000
+      });
+      toast.present();
+    }
   }
 
 }
