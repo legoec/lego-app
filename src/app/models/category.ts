@@ -1,6 +1,7 @@
 export interface Category {
-    id?: number;
-    name?: string;
-    percentage?: number;
-    active?: boolean;
+  id?: number;
+  name?: string;
+  percentage?: number;
+  active?: boolean;
+  icon?: string;
 }

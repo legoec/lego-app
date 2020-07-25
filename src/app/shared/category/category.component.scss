@@ -1,6 +1,21 @@
+ion-card {
+  background-color: #f9f9fb;
+}
+
 .category-container {
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .category-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .name {
+    font-size: medium;
+    font-weight: bold;
+  }
 }
