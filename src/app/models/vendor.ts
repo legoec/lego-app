@@ -1,4 +1,5 @@
 import { Category } from './category';
+import { Image } from './image';
 
 export interface Vendor {
   id?: number;
@@ -7,8 +8,8 @@ export interface Vendor {
   legal_representative?: string;
   business_name?: string;
   image?: string;
-  logo?: string;
-  slogan?: string;
+  logo?: Image;
+  slogan?: Image;
   contributor_type?: string;
   mobile?: string;
   category_id?: number;

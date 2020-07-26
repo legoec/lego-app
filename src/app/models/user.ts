@@ -1,3 +1,5 @@
+import { Image } from './image';
+
 export interface User {
   id?: number;
   name: string;
@@ -6,8 +8,4 @@ export interface User {
   isVendor?: boolean;
   nickname?: string;
   image?: Image;
-}
-
-interface Image {
-  url: string;
 }

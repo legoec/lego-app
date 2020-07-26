@@ -8,13 +8,15 @@ import { ServiceDetailsPageRoutingModule } from './service-details-routing.modul
 
 import { ServiceDetailsPage } from './service-details.page';
 import { ServicesService } from 'src/app/shared/services/services.service';
+import { BarRatingModule } from 'ngx-bar-rating';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ServiceDetailsPageRoutingModule
+    ServiceDetailsPageRoutingModule,
+    BarRatingModule
   ],
   declarations: [ServiceDetailsPage],
   providers: [ServicesService]

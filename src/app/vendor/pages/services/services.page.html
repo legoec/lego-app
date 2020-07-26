@@ -8,14 +8,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-sliding *ngFor="let service of services$ | async">
-      <ion-item lines="inset" button [routerLink]="['service', service.id]">
-        <ion-label> {{ service.name }} </ion-label>
-        <ion-note slot="end" color="primary">{{ service.price }}</ion-note>
-      </ion-item>
-    </ion-item-sliding>
-  </ion-list>
+  <ion-row *ngIf="services$ | async as services" class="ion-padding">
+    <ng-container *ngFor="let service of services">
+      <ion-col size="12" class="ion-no=padding">
+        <app-service [service]="service" [routerLink]="['service', service.id]"></app-service>
+      </ion-col>
+    </ng-container>
+  </ion-row>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button [routerLink]="['new']" routerDirection="forward">
       <ion-icon name="add"></ion-icon>
