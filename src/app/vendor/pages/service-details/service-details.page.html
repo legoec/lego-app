@@ -18,12 +18,12 @@
         <div class="title">{{service.name}}</div>
 
         <ion-item class="ion-no-padding">
-          <div class="label item">Precio</div>
-          <div class="value item">${{service.price}}</div>
+          <div class="label">Precio</div>
+          <div class="value">${{service.price}}</div>
         </ion-item>
         <ion-item class="ion-no-padding">
-          <div class="label item">Cantidad</div>
-          <div class="value item">{{service.amount}}</div>
+          <div class="label">Cantidad</div>
+          <div class="value">{{service.amount || '0'}}</div>
         </ion-item>
       </div>
       <ion-button shape="round" color="primary" expand="block" [routerLink]="['edit', service.id]">Editar</ion-button>
